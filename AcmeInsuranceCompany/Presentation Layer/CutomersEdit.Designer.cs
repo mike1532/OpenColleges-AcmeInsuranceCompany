@@ -1,6 +1,6 @@
-﻿namespace AcmeInsuranceCompany
+﻿namespace AcmeInsuranceCompany.Presentation_Layer.Customers
 {
-    partial class Form1
+    partial class CutomersEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CutomersEdit
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(900, 506);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "CutomersEdit";
+            this.Text = "CutomersEdit";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-

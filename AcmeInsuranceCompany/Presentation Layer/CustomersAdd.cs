@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AcmeInsuranceCompany
+namespace AcmeInsuranceCompany.Presentation_Layer.Customers
 {
-    public partial class Form1 : Form
+    public partial class frmCustomersAdd : Form
     {
-        public Form1()
+        public frmCustomersAdd()
         {
             InitializeComponent();
         }
