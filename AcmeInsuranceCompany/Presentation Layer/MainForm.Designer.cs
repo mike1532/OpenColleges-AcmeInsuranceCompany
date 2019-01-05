@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.yeahToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,11 +45,11 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblUserPrompt = new System.Windows.Forms.Label();
             this.lvDashboard = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExit = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAcmeLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoadRunner)).BeginInit();
@@ -70,8 +70,8 @@
             // yeahToolStripMenuItem
             // 
             this.yeahToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yupToolStripMenuItem,
-            this.asdToolStripMenuItem,
+            this.customersToolStripMenuItem,
+            this.categoriesToolStripMenuItem,
             this.productsToolStripMenuItem,
             this.productTypesToolStripMenuItem,
             this.salesToolStripMenuItem,
@@ -80,42 +80,43 @@
             this.yeahToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.yeahToolStripMenuItem.Text = "File";
             // 
-            // yupToolStripMenuItem
+            // customersToolStripMenuItem
             // 
-            this.yupToolStripMenuItem.Name = "yupToolStripMenuItem";
-            this.yupToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.yupToolStripMenuItem.Text = "Customers";
-            this.yupToolStripMenuItem.Click += new System.EventHandler(this.yupToolStripMenuItem_Click);
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
-            // asdToolStripMenuItem
+            // categoriesToolStripMenuItem
             // 
-            this.asdToolStripMenuItem.Name = "asdToolStripMenuItem";
-            this.asdToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.asdToolStripMenuItem.Text = "Categories";
+            this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.categoriesToolStripMenuItem.Text = "Categories";
             // 
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.productsToolStripMenuItem.Text = "Products";
             // 
             // productTypesToolStripMenuItem
             // 
             this.productTypesToolStripMenuItem.Name = "productTypesToolStripMenuItem";
-            this.productTypesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.productTypesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.productTypesToolStripMenuItem.Text = "Product Types";
             // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.salesToolStripMenuItem.Text = "Sales";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -195,10 +196,6 @@
             this.lvDashboard.UseCompatibleStateImageBehavior = false;
             this.lvDashboard.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 0;
-            // 
             // columnHeader2
             // 
             this.columnHeader2.Tag = "";
@@ -231,6 +228,11 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.DisplayIndex = 3;
+            this.columnHeader1.Width = 0;
+            // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -260,8 +262,8 @@
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem yeahToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
         private System.Windows.Forms.PictureBox pbAcmeLogo;
         private System.Windows.Forms.PictureBox pbRoadRunner;
         private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
@@ -274,10 +276,10 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tutorialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

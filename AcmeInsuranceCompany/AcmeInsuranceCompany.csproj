@@ -51,17 +51,17 @@
     <Compile Include="Presentation Layer\CustomersAdd.Designer.cs">
       <DependentUpon>CustomersAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\CustomersSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\CustomersSearch.Designer.cs">
+      <DependentUpon>CustomersSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\CustomersView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation Layer\CustomersView.Designer.cs">
       <DependentUpon>CustomersView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation Layer\CutomersEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation Layer\CutomersEdit.Designer.cs">
-      <DependentUpon>CutomersEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\MainForm.cs">
       <SubType>Form</SubType>
@@ -69,28 +69,19 @@
     <Compile Include="Presentation Layer\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Layer\SalesView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation Layer\SalesView.Designer.cs">
-      <DependentUpon>SalesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentation Layer\CustomersAdd.resx">
       <DependentUpon>CustomersAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\CustomersSearch.resx">
+      <DependentUpon>CustomersSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\CustomersView.resx">
       <DependentUpon>CustomersView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Layer\CutomersEdit.resx">
-      <DependentUpon>CutomersEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Layer\SalesView.resx">
-      <DependentUpon>SalesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
