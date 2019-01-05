@@ -6,3 +6,10 @@ Company, that allows staff to both view and maintain customer details, products 
 company.
 
 The database script has aready been created and can be found in the Open Colleges additional resources section.  
+
+Images were sourced online:
+
+  1. Road Runner - https://www.amazon.com/Coyote-Runner-Cartoon-Bumper-Sticker/dp/B00HUS1IGK
+  2. ACME Insurance - http://acmegroup.co.in/acme-insurance/
+  
+  I do not own any of these images
