@@ -19,25 +19,42 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
-        //menu options
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
+        //menu options       
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCustomersView customersView = new frmCustomersView();
             customersView.Show();
             Hide();
         }
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void productTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSalesView salesView = new frmSalesView();
+            salesView.Show();
+            Hide();
+        }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        
         //buttons
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-      
+       
     }
 }

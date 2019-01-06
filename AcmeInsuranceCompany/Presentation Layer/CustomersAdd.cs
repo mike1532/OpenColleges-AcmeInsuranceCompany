@@ -43,12 +43,15 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-        //change from add to edit
+        //change from add to edit form
         public void ChangeAddToEdit (string form, string title, string button)
         {
             this.Text = form;
-            lblCustomersAddTitle.Text = title;
+            lblTitle.Text = title;
             btnAdd.Text = button;
+            btnClear.Visible = false;
+            btnClose.Top = btnClear.Top;
+            btnClose.Left = btnClear.Left;
         }
         
     }

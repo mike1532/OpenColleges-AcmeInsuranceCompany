@@ -56,7 +56,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
         }
+
     }
 }

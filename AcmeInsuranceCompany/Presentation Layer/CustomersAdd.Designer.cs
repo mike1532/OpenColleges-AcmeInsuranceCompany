@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCustomersAddTitle = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.gbCustomerDetails = new System.Windows.Forms.GroupBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
@@ -41,7 +41,7 @@
             this.lblGender = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbOfficeUseOnly = new System.Windows.Forms.GroupBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.lblCustomerID = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -56,24 +56,26 @@
             this.lblState = new System.Windows.Forms.Label();
             this.lblSuburb = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
+            this.lbCategory = new System.Windows.Forms.ListBox();
             this.gbCustomerDetails.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbOfficeUseOnly.SuspendLayout();
             this.gbContactDetails.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblCustomersAddTitle
+            // lblTitle
             // 
-            this.lblCustomersAddTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCustomersAddTitle.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomersAddTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblCustomersAddTitle.Name = "lblCustomersAddTitle";
-            this.lblCustomersAddTitle.Size = new System.Drawing.Size(982, 85);
-            this.lblCustomersAddTitle.TabIndex = 4;
-            this.lblCustomersAddTitle.Text = " New Customer Details";
-            this.lblCustomersAddTitle.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(982, 85);
+            this.lblTitle.TabIndex = 4;
+            this.lblTitle.Text = " New Customer Details";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // gbCustomerDetails
             // 
+            this.gbCustomerDetails.Controls.Add(this.lbCategory);
             this.gbCustomerDetails.Controls.Add(this.cbCategory);
             this.gbCustomerDetails.Controls.Add(this.dateTimePickerDOB);
             this.gbCustomerDetails.Controls.Add(this.rbFemale);
@@ -192,19 +194,20 @@
             this.lblFirstName.TabIndex = 0;
             this.lblFirstName.Text = "First Name:";
             // 
-            // groupBox1
+            // gbOfficeUseOnly
             // 
-            this.groupBox1.Controls.Add(this.txtCustomerID);
-            this.groupBox1.Controls.Add(this.lblCustomerID);
-            this.groupBox1.Location = new System.Drawing.Point(540, 137);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(419, 85);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Office Use Only";
+            this.gbOfficeUseOnly.Controls.Add(this.txtCustomerID);
+            this.gbOfficeUseOnly.Controls.Add(this.lblCustomerID);
+            this.gbOfficeUseOnly.Location = new System.Drawing.Point(551, 137);
+            this.gbOfficeUseOnly.Name = "gbOfficeUseOnly";
+            this.gbOfficeUseOnly.Size = new System.Drawing.Size(419, 85);
+            this.gbOfficeUseOnly.TabIndex = 1;
+            this.gbOfficeUseOnly.TabStop = false;
+            this.gbOfficeUseOnly.Text = "Office Use Only";
             // 
             // txtCustomerID
             // 
+            this.txtCustomerID.Enabled = false;
             this.txtCustomerID.Location = new System.Drawing.Point(190, 44);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.Size = new System.Drawing.Size(209, 26);
@@ -222,7 +225,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 487);
+            this.btnAdd.Location = new System.Drawing.Point(12, 485);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 40);
             this.btnAdd.TabIndex = 3;
@@ -233,7 +236,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(416, 487);
+            this.btnClear.Location = new System.Drawing.Point(176, 485);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(138, 40);
             this.btnClear.TabIndex = 4;
@@ -244,7 +247,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(820, 487);
+            this.btnClose.Location = new System.Drawing.Point(340, 485);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(138, 40);
             this.btnClose.TabIndex = 5;
@@ -262,7 +265,7 @@
             this.gbContactDetails.Controls.Add(this.lblState);
             this.gbContactDetails.Controls.Add(this.lblSuburb);
             this.gbContactDetails.Controls.Add(this.lblAddress);
-            this.gbContactDetails.Location = new System.Drawing.Point(540, 241);
+            this.gbContactDetails.Location = new System.Drawing.Point(551, 241);
             this.gbContactDetails.Name = "gbContactDetails";
             this.gbContactDetails.Size = new System.Drawing.Size(419, 180);
             this.gbContactDetails.TabIndex = 2;
@@ -334,6 +337,16 @@
             this.lblAddress.TabIndex = 0;
             this.lblAddress.Text = "Address:";
             // 
+            // lbCategory
+            // 
+            this.lbCategory.FormattingEnabled = true;
+            this.lbCategory.ItemHeight = 20;
+            this.lbCategory.Location = new System.Drawing.Point(393, 231);
+            this.lbCategory.Name = "lbCategory";
+            this.lbCategory.Size = new System.Drawing.Size(20, 24);
+            this.lbCategory.TabIndex = 6;
+            this.lbCategory.Visible = false;
+            // 
             // frmCustomersAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -343,9 +356,9 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbOfficeUseOnly);
             this.Controls.Add(this.gbCustomerDetails);
-            this.Controls.Add(this.lblCustomersAddTitle);
+            this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmCustomersAdd";
@@ -355,8 +368,8 @@
             this.Load += new System.EventHandler(this.frmCustomersAdd_Load);
             this.gbCustomerDetails.ResumeLayout(false);
             this.gbCustomerDetails.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbOfficeUseOnly.ResumeLayout(false);
+            this.gbOfficeUseOnly.PerformLayout();
             this.gbContactDetails.ResumeLayout(false);
             this.gbContactDetails.PerformLayout();
             this.ResumeLayout(false);
@@ -365,9 +378,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblCustomersAddTitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox gbCustomerDetails;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbOfficeUseOnly;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnClose;
@@ -393,5 +406,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPostcode;
         private System.Windows.Forms.ComboBox cbState;
+        private System.Windows.Forms.ListBox lbCategory;
     }
 }

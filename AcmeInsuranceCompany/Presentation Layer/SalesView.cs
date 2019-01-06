@@ -10,57 +10,52 @@ using System.Windows.Forms;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
-    public partial class frmCustomersView : Form
+    public partial class frmSalesView : Form
     {
-        public frmCustomersView()
+        public frmSalesView()
         {
             InitializeComponent();
         }
-
-        //TODO - Load/Closing events
-        private void frmCustomersView_Load(object sender, EventArgs e)
+        //load/closing events
+        private void frmSalesView_Load(object sender, EventArgs e)
         {
-            //code to load customers data
+            //code to load sales data
         }
-        private void frmCustomersView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-        private void frmCustomersView_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmSalesView_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+        private void frmSalesView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
 
-        //TODO Click events for buttons       
+
+        //buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmCustomersAdd customersAdd = new frmCustomersAdd();
-            customersAdd.ShowDialog();
+            frmSalesAdd salesAdd = new frmSalesAdd();
+            salesAdd.ShowDialog();
             Hide();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //TODO - code to update selected customer record
-            frmCustomersAdd editForm = new frmCustomersAdd();
-            editForm.ChangeAddToEdit("Edit Customer Details", " Edit Customer Details", "Update");            
+            frmSalesAdd editForm = new frmSalesAdd();
+            editForm.ChangeAddToEdit("Edit Sale Details", " Edit Sale Details", "Update");            
             editForm.ShowDialog();
             Hide();
-            
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected customer record
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
-                                            "Delete Customer Record?", MessageBoxButtons.YesNo);
+                                           "Delete Sale Record?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
                 return;
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO - code to search records
-            frmCustomersSearch customersSearch = new frmCustomersSearch();
-            customersSearch.ShowDialog();
-                            
+            frmSalesSearch salesSearch = new frmSalesSearch();
+            salesSearch.ShowDialog();            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -69,6 +64,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-       
+
     }
 }

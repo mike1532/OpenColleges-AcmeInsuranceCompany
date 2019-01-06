@@ -45,6 +45,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lblCustomersViewTitle
@@ -62,6 +63,7 @@
             this.lvCustomers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
+            this.columnHeader11,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
@@ -93,49 +95,49 @@
             // 
             this.columnHeader3.Text = "First Name";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 95;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Last Name";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 95;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Address";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 212;
+            this.columnHeader5.Width = 217;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Suburb";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 85;
+            this.columnHeader6.Width = 80;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "State";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 75;
+            this.columnHeader7.Width = 65;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Postcode";
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 100;
+            this.columnHeader8.Width = 85;
             // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "Gender";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader9.Width = 80;
+            this.columnHeader9.Width = 75;
             // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "D.O.B";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 100;
+            this.columnHeader10.Width = 55;
             // 
             // btnAdd
             // 
@@ -192,6 +194,12 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Category";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 85;
+            // 
             // frmCustomersView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -207,9 +215,10 @@
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmCustomersView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "View ACME Customer Details";
+            this.Text = "View Customer Records";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCustomersView_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCustomersView_FormClosed);
+            this.Load += new System.EventHandler(this.frmCustomersView_Load);
             this.ResumeLayout(false);
 
         }
@@ -233,5 +242,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }
