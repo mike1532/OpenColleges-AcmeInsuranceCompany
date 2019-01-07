@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCustomersViewTitle = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.lvCustomers = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,18 +46,29 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.yeahToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblCustomersViewTitle
+            // lblTitle
             // 
-            this.lblCustomersViewTitle.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomersViewTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblCustomersViewTitle.Name = "lblCustomersViewTitle";
-            this.lblCustomersViewTitle.Size = new System.Drawing.Size(982, 56);
-            this.lblCustomersViewTitle.TabIndex = 3;
-            this.lblCustomersViewTitle.Text = "Customer Details";
-            this.lblCustomersViewTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(0, 17);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(982, 65);
+            this.lblTitle.TabIndex = 3;
+            this.lblTitle.Text = "Customer Details";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lvCustomers
             // 
@@ -73,7 +85,7 @@
             this.columnHeader9,
             this.columnHeader10});
             this.lvCustomers.FullRowSelect = true;
-            this.lvCustomers.Location = new System.Drawing.Point(12, 76);
+            this.lvCustomers.Location = new System.Drawing.Point(12, 102);
             this.lvCustomers.Name = "lvCustomers";
             this.lvCustomers.Size = new System.Drawing.Size(958, 368);
             this.lvCustomers.TabIndex = 2;
@@ -90,6 +102,12 @@
             this.columnHeader2.Text = "Customer ID";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 102;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Category";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 85;
             // 
             // columnHeader3
             // 
@@ -194,24 +212,101 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // columnHeader11
+            // menuStrip1
             // 
-            this.columnHeader11.Text = "Category";
-            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader11.Width = 85;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yeahToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(982, 28);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // yeahToolStripMenuItem
+            // 
+            this.yeahToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customersToolStripMenuItem,
+            this.categoriesToolStripMenuItem,
+            this.productsToolStripMenuItem,
+            this.productTypesToolStripMenuItem,
+            this.salesToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.yeahToolStripMenuItem.Name = "yeahToolStripMenuItem";
+            this.yeahToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.yeahToolStripMenuItem.Text = "File";
+            // 
+            // customersToolStripMenuItem
+            // 
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.customersToolStripMenuItem.Text = "Customers";
+            // 
+            // categoriesToolStripMenuItem
+            // 
+            this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.categoriesToolStripMenuItem.Text = "Categories";
+            // 
+            // productsToolStripMenuItem
+            // 
+            this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.productsToolStripMenuItem.Text = "Products";
+            // 
+            // productTypesToolStripMenuItem
+            // 
+            this.productTypesToolStripMenuItem.Name = "productTypesToolStripMenuItem";
+            this.productTypesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.productTypesToolStripMenuItem.Text = "Product Types";
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.salesToolStripMenuItem.Text = "Sales";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tutorialToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // tutorialToolStripMenuItem
+            // 
+            this.tutorialToolStripMenuItem.Name = "tutorialToolStripMenuItem";
+            this.tutorialToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.tutorialToolStripMenuItem.Text = "Tutorial";
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
+            this.aboutToolStripMenuItem1.Text = "About";
             // 
             // frmCustomersView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lvCustomers);
-            this.Controls.Add(this.lblCustomersViewTitle);
+            this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmCustomersView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -219,13 +314,16 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCustomersView_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCustomersView_FormClosed);
             this.Load += new System.EventHandler(this.frmCustomersView_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblCustomersViewTitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvCustomers;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -243,5 +341,16 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem yeahToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tutorialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
     }
 }

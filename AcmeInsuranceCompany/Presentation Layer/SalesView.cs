@@ -16,7 +16,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             InitializeComponent();
         }
-        //load/closing events
+        //events
         private void frmSalesView_Load(object sender, EventArgs e)
         {
             //code to load sales data
@@ -64,6 +64,10 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
 
+        }
+        //TODO menu code
     }
 }

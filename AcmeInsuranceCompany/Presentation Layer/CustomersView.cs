@@ -17,7 +17,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
-        //TODO - Load/Closing events
+        //events
         private void frmCustomersView_Load(object sender, EventArgs e)
         {
             //code to load customers data
@@ -69,6 +69,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-       
+        //TODO menu code
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AcmeInsuranceCompany.Presentation_Layer
 {
-    partial class frmSalesView
+    partial class frmCategoriesView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,15 @@
         private void InitializeComponent()
         {
             this.lblTitle = new System.Windows.Forms.Label();
-            this.lvSales = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.lvCategories = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.yeahToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,62 +57,10 @@
             this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 17);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(982, 65);
+            this.lblTitle.Size = new System.Drawing.Size(982, 56);
             this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Company Sale Details";
+            this.lblTitle.Text = "Available Categories";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
-            // 
-            // lvSales
-            // 
-            this.lvSales.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvSales.FullRowSelect = true;
-            this.lvSales.Location = new System.Drawing.Point(12, 102);
-            this.lvSales.Name = "lvSales";
-            this.lvSales.Size = new System.Drawing.Size(958, 368);
-            this.lvSales.TabIndex = 5;
-            this.lvSales.UseCompatibleStateImageBehavior = false;
-            this.lvSales.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 0;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Sale ID";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Customer";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 220;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Product";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 231;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Premium Paid";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 150;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Policy Start Date";
-            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 253;
             // 
             // btnClose
             // 
@@ -123,7 +68,7 @@
             this.btnClose.Location = new System.Drawing.Point(832, 485);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(138, 40);
-            this.btnClose.TabIndex = 10;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -134,7 +79,7 @@
             this.btnSearch.Location = new System.Drawing.Point(627, 485);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(138, 40);
-            this.btnSearch.TabIndex = 9;
+            this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -145,7 +90,7 @@
             this.btnDelete.Location = new System.Drawing.Point(422, 485);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(138, 40);
-            this.btnDelete.TabIndex = 8;
+            this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "&Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -156,7 +101,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(217, 485);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(138, 40);
-            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "&Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -167,10 +112,40 @@
             this.btnAdd.Location = new System.Drawing.Point(12, 485);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 40);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lvCategories
+            // 
+            this.lvCategories.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCategories.FullRowSelect = true;
+            this.lvCategories.Location = new System.Drawing.Point(12, 102);
+            this.lvCategories.Name = "lvCategories";
+            this.lvCategories.Size = new System.Drawing.Size(957, 368);
+            this.lvCategories.TabIndex = 10;
+            this.lvCategories.UseCompatibleStateImageBehavior = false;
+            this.lvCategories.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 0;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Category ID";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Category";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 803;
             // 
             // menuStrip1
             // 
@@ -254,27 +229,26 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
-            // frmSalesView
+            // frmCategoriesView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 553);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.lvCategories);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.lvSales);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmSalesView";
+            this.Name = "frmCategoriesView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "View Sales Records";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSalesView_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSalesView_FormClosed);
-            this.Load += new System.EventHandler(this.frmSalesView_Load);
+            this.Text = "View Categories";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCategoriesView_FormClosing);
+            this.Load += new System.EventHandler(this.frmCategoriesView_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -285,18 +259,15 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ListView lvSales;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ListView lvCategories;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem yeahToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;

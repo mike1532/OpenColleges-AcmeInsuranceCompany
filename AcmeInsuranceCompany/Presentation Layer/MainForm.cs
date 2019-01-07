@@ -28,7 +28,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         }
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmCategoriesView categoriesView = new frmCategoriesView();
+            categoriesView.Show();
+            Hide();
         }
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -49,7 +51,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Application.Exit();
         }
         
-        //buttons
+        //button
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
