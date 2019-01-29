@@ -7,19 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//allows access to the presentation layer
-//using AcmeInsuranceCompany.Presentation_Layer;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
-    public partial class frmMainForm : Form
+    public partial class frmProductTypesView : Form
     {
-        public frmMainForm()
+        public frmProductTypesView()
         {
             InitializeComponent();
         }
 
-        //menu options       
+        //events
+        private void frmProductTypesView_Load(object sender, EventArgs e)
+        {
+            //TODO - code to load product types
+        }
+        private void frmProductTypesView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        //button events
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            frmMainForm mainForm = new frmMainForm();
+            mainForm.Show();
+            Hide();
+        }
+
+        //menu options - needs to be linked up to the appropriate click event
+        private void mainScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMainForm mainForm = new frmMainForm();
+            mainForm.Show();
+            Hide();
+        }
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCustomersView customersView = new frmCustomersView();
@@ -54,13 +92,5 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             Application.Exit();
         }
-        
-        //button
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-       
     }
 }

@@ -56,14 +56,14 @@
             this.cbProduct.Location = new System.Drawing.Point(296, 111);
             this.cbProduct.Name = "cbProduct";
             this.cbProduct.Size = new System.Drawing.Size(254, 28);
-            this.cbProduct.TabIndex = 13;
+            this.cbProduct.TabIndex = 3;
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(296, 48);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(254, 26);
-            this.txtSearch.TabIndex = 12;
+            this.txtSearch.TabIndex = 1;
             // 
             // rbLastName
             // 
@@ -71,7 +71,7 @@
             this.rbLastName.Location = new System.Drawing.Point(59, 177);
             this.rbLastName.Name = "rbLastName";
             this.rbLastName.Size = new System.Drawing.Size(178, 24);
-            this.rbLastName.TabIndex = 11;
+            this.rbLastName.TabIndex = 4;
             this.rbLastName.Text = "Search on last name";
             this.rbLastName.UseVisualStyleBackColor = true;
             this.rbLastName.CheckedChanged += new System.EventHandler(this.rbLastName_CheckedChanged);
@@ -82,7 +82,7 @@
             this.rbProduct.Location = new System.Drawing.Point(59, 113);
             this.rbProduct.Name = "rbProduct";
             this.rbProduct.Size = new System.Drawing.Size(167, 24);
-            this.rbProduct.TabIndex = 10;
+            this.rbProduct.TabIndex = 2;
             this.rbProduct.Text = "Search on product";
             this.rbProduct.UseVisualStyleBackColor = true;
             this.rbProduct.CheckedChanged += new System.EventHandler(this.rbProduct_CheckedChanged);
@@ -94,7 +94,7 @@
             this.rbListAll.Location = new System.Drawing.Point(59, 49);
             this.rbListAll.Name = "rbListAll";
             this.rbListAll.Size = new System.Drawing.Size(131, 24);
-            this.rbListAll.TabIndex = 9;
+            this.rbListAll.TabIndex = 0;
             this.rbListAll.TabStop = true;
             this.rbListAll.Text = "List all records";
             this.rbListAll.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             this.btnClose.Location = new System.Drawing.Point(339, 303);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(138, 40);
-            this.btnClose.TabIndex = 16;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -117,7 +117,7 @@
             this.btnSearch.Location = new System.Drawing.Point(129, 303);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(138, 40);
-            this.btnSearch.TabIndex = 15;
+            this.btnSearch.TabIndex = 5;
             this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);

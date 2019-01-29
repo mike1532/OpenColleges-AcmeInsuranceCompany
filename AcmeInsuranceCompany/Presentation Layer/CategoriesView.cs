@@ -64,6 +64,46 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-        //TODO menu code
+        //menu options - needs to be linked up to the appropriate click event
+        private void mainScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMainForm mainForm = new frmMainForm();
+            mainForm.Show();
+            Hide();
+        }
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCustomersView customersView = new frmCustomersView();
+            customersView.Show();
+            Hide();
+        }
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategoriesView categoriesView = new frmCategoriesView();
+            categoriesView.Show();
+            Hide();
+        }
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProductsView productsView = new frmProductsView();
+            productsView.Show();
+            Hide();
+        }
+        private void productTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProductTypesView productTypesView = new frmProductTypesView();
+            productTypesView.Show();
+            Hide();
+        }
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSalesView salesView = new frmSalesView();
+            salesView.Show();
+            Hide();
+        }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

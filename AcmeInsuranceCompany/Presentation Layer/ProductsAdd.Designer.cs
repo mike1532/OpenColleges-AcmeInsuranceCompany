@@ -72,7 +72,7 @@
             this.gbProductDetails.Location = new System.Drawing.Point(13, 125);
             this.gbProductDetails.Name = "gbProductDetails";
             this.gbProductDetails.Size = new System.Drawing.Size(757, 215);
-            this.gbProductDetails.TabIndex = 7;
+            this.gbProductDetails.TabIndex = 0;
             this.gbProductDetails.TabStop = false;
             this.gbProductDetails.Text = "Product Details";
             // 
@@ -81,7 +81,7 @@
             this.textBox1.Location = new System.Drawing.Point(505, 117);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(240, 26);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 4;
             // 
             // lblYearlyPremium
             // 
@@ -97,7 +97,7 @@
             this.txtProductName.Location = new System.Drawing.Point(505, 54);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(240, 26);
-            this.txtProductName.TabIndex = 6;
+            this.txtProductName.TabIndex = 2;
             // 
             // lblProductName
             // 
@@ -133,7 +133,7 @@
             this.txtProductID.Location = new System.Drawing.Point(143, 54);
             this.txtProductID.Name = "txtProductID";
             this.txtProductID.Size = new System.Drawing.Size(102, 26);
-            this.txtProductID.TabIndex = 2;
+            this.txtProductID.TabIndex = 1;
             // 
             // lblProductType
             // 
@@ -168,7 +168,7 @@
             this.btnClose.Location = new System.Drawing.Point(341, 378);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(138, 40);
-            this.btnClose.TabIndex = 12;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -179,7 +179,7 @@
             this.btnClear.Location = new System.Drawing.Point(177, 378);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(138, 40);
-            this.btnClear.TabIndex = 11;
+            this.btnClear.TabIndex = 2;
             this.btnClear.Text = "&Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -190,7 +190,7 @@
             this.btnAdd.Location = new System.Drawing.Point(13, 378);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 40);
-            this.btnAdd.TabIndex = 10;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
