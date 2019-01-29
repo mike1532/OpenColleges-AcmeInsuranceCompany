@@ -34,7 +34,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         }
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmProductsView productsView = new frmProductsView();
+            productsView.Show();
+            Hide();
         }
         private void productTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {

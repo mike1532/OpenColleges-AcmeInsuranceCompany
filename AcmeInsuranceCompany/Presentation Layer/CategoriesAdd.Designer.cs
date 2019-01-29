@@ -48,7 +48,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(782, 85);
             this.lblTitle.TabIndex = 5;
-            this.lblTitle.Text = "New Category Details";
+            this.lblTitle.Text = " New Category Details";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // gbCategoryDetails
@@ -144,7 +144,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmCategoriesAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add new Category";
+            this.Text = "Add New Category";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCategoriesAdd_FormClosing);
             this.gbCategoryDetails.ResumeLayout(false);
             this.gbCategoryDetails.PerformLayout();

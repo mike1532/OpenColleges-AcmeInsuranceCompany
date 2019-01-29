@@ -10,52 +10,53 @@ using System.Windows.Forms;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
-    public partial class frmCategoriesView : Form
+    public partial class frmProductsView : Form
     {
-        public frmCategoriesView()
+        public frmProductsView()
         {
             InitializeComponent();
         }
+
         //events
-        private void frmCategoriesView_Load(object sender, EventArgs e)
+        private void frmProducts_Load(object sender, EventArgs e)
         {
-            //code to load categories
+            //TODO - code to load products
         }
-        private void frmCategoriesView_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmProducts_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
-        //buttons
+        //button events
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmCategoriesAdd categoriesAdd = new frmCategoriesAdd();
-            categoriesAdd.ShowDialog();
+            frmProductsAdd productsAdd = new frmProductsAdd();
+            productsAdd.ShowDialog();
             Hide();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            frmCategoriesAdd editForm = new frmCategoriesAdd();
-            editForm.ChangeAddToEdit("Edit Category", " Edit Category", "Update");
+            frmProductsAdd editForm = new frmProductsAdd();
+            editForm.ChangeAddToEdit("Edit Product Details", " Edit Product Details", "Update");
             editForm.ShowDialog();
             Hide();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected category
+            //TODO - code to delete selected Product
 
             //message to show if category is able to be deleted
-            DialogResult dialogResultAble = MessageBox.Show("Are you sure you wish to delete this category?",
-                                            "Delete Category?", MessageBoxButtons.YesNo);
+            DialogResult dialogResultAble = MessageBox.Show("Are you sure you wish to delete this product?",
+                                            "Delete Product?", MessageBoxButtons.YesNo);
             if (dialogResultAble == DialogResult.No)
                 return;
-            //add code to check to see if category is being used. if being used tell user that it is
+            //add code to check to see if Product is being used in a sale. if being used tell user that it is
             //unable to be deleted. Try/Catch block?
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            frmCategoriesSearch categoriesSearch = new frmCategoriesSearch();
-            categoriesSearch.ShowDialog();                       
+            frmProductsSearch productsSearch = new frmProductsSearch();
+            productsSearch.ShowDialog();            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -64,6 +65,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-        //TODO menu code
+        //TODO - menu code
     }
 }

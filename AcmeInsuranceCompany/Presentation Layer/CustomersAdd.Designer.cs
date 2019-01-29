@@ -30,6 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbCustomerDetails = new System.Windows.Forms.GroupBox();
+            this.lbCategory = new System.Windows.Forms.ListBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
             this.rbFemale = new System.Windows.Forms.RadioButton();
@@ -56,7 +57,6 @@
             this.lblState = new System.Windows.Forms.Label();
             this.lblSuburb = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.lbCategory = new System.Windows.Forms.ListBox();
             this.gbCustomerDetails.SuspendLayout();
             this.gbOfficeUseOnly.SuspendLayout();
             this.gbContactDetails.SuspendLayout();
@@ -94,8 +94,19 @@
             this.gbCustomerDetails.TabStop = false;
             this.gbCustomerDetails.Text = "Customer Details";
             // 
+            // lbCategory
+            // 
+            this.lbCategory.FormattingEnabled = true;
+            this.lbCategory.ItemHeight = 20;
+            this.lbCategory.Location = new System.Drawing.Point(393, 231);
+            this.lbCategory.Name = "lbCategory";
+            this.lbCategory.Size = new System.Drawing.Size(20, 24);
+            this.lbCategory.TabIndex = 6;
+            this.lbCategory.Visible = false;
+            // 
             // cbCategory
             // 
+            this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Location = new System.Drawing.Point(178, 231);
             this.cbCategory.Name = "cbCategory";
@@ -295,6 +306,7 @@
             // 
             // cbState
             // 
+            this.cbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbState.FormattingEnabled = true;
             this.cbState.Location = new System.Drawing.Point(104, 129);
             this.cbState.Name = "cbState";
@@ -336,16 +348,6 @@
             this.lblAddress.Size = new System.Drawing.Size(71, 20);
             this.lblAddress.TabIndex = 0;
             this.lblAddress.Text = "Address:";
-            // 
-            // lbCategory
-            // 
-            this.lbCategory.FormattingEnabled = true;
-            this.lbCategory.ItemHeight = 20;
-            this.lbCategory.Location = new System.Drawing.Point(393, 231);
-            this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(20, 24);
-            this.lbCategory.TabIndex = 6;
-            this.lbCategory.Visible = false;
             // 
             // frmCustomersAdd
             // 

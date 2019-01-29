@@ -17,14 +17,15 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
+        //change size of form to accomodate new additions to search criteria
         private void frmCategoriesSearch_Load(object sender, EventArgs e)
         {
-            txtSearch.Visible = false;
+           
         }
 
         private void rbListAll_CheckedChanged(object sender, EventArgs e)
         {
-            txtSearch.Visible = false;
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
