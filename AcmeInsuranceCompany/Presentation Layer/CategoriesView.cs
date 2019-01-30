@@ -36,7 +36,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             frmCategoriesAdd editForm = new frmCategoriesAdd();
-            editForm.ChangeAddToEdit("Edit Category", " Edit Category", "Update");
+            editForm.ChangeAddToEdit("Edit Category", " Edit Category Details", "Update");
             editForm.ShowDialog();
             Hide();
         }
@@ -45,9 +45,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //TODO - code to delete selected category
 
             //message to show if category is able to be deleted
-            DialogResult dialogResultAble = MessageBox.Show("Are you sure you wish to delete this category?",
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this category?",
                                             "Delete Category?", MessageBoxButtons.YesNo);
-            if (dialogResultAble == DialogResult.No)
+            if (dialogResult == DialogResult.No)
                 return;
             //add code to check to see if category is being used. if being used tell user that it is
             //unable to be deleted. Try/Catch block?
@@ -104,6 +104,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ShowDialog();
         }
     }
 }

@@ -46,9 +46,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //TODO - code to delete selected Product
 
             //message to show if category is able to be deleted
-            DialogResult dialogResultAble = MessageBox.Show("Are you sure you wish to delete this product?",
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this product?",
                                             "Delete Product?", MessageBoxButtons.YesNo);
-            if (dialogResultAble == DialogResult.No)
+            if (dialogResult == DialogResult.No)
                 return;
             //add code to check to see if Product is being used in a sale. if being used tell user that it is
             //unable to be deleted. Try/Catch block?
@@ -105,6 +105,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ShowDialog();
         }
     }
 }

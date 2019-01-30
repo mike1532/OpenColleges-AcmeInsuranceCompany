@@ -30,19 +30,33 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //button events
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            frmProductTypesAdd productTypesAdd = new frmProductTypesAdd();
+            productTypesAdd.ShowDialog();
+            Hide();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            frmProductTypesAdd editProductTypes = new frmProductTypesAdd();
+            editProductTypes.ChangeAddToEdit("Edit Product Type", " Edit Product Type Details", "Update");
+            editProductTypes.ShowDialog();
+            Hide();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //TODO - code to delete selected category
 
+            //message to show if category is able to be deleted
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this product type?",
+                                            "Delete Product Type?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+                return;
+            //add code to check to see if category is being used. if being used tell user that it is
+            //unable to be deleted. Try/Catch block?
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            frmProductTypesSearch productTypesSearch = new frmProductTypesSearch();
+            productTypesSearch.ShowDialog();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -51,7 +65,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-        //menu options - needs to be linked up to the appropriate click event
+        //menu to be linked up to the appropriate click event
         private void mainScreenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmMainForm mainForm = new frmMainForm();
@@ -91,6 +105,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ShowDialog();
         }
     }
 }

@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentation Layer\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\CategoriesAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,18 @@
     <Compile Include="Presentation Layer\ProductsAdd.Designer.cs">
       <DependentUpon>ProductsAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\ProductTypesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ProductTypesAdd.Designer.cs">
+      <DependentUpon>ProductTypesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\ProductTypesSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ProductTypesSearch.Designer.cs">
+      <DependentUpon>ProductTypesSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\ProductTypesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +149,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation Layer\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\CategoriesAdd.resx">
       <DependentUpon>CategoriesAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ProductsAdd.resx">
       <DependentUpon>ProductsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ProductTypesAdd.resx">
+      <DependentUpon>ProductTypesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ProductTypesSearch.resx">
+      <DependentUpon>ProductTypesSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ProductTypesView.resx">
       <DependentUpon>ProductTypesView.cs</DependentUpon>
@@ -195,5 +222,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
