@@ -45,8 +45,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             btnAdd.Text = button;
             lblCategory.Text = "Category:";
             btnClear.Visible = false;
-            btnClose.Top = btnClear.Top;
-            btnClose.Left = btnClear.Left;
+            btnCancel.Top = btnClear.Top;
+            btnCancel.Left = btnClear.Left;
         }
     }
 }

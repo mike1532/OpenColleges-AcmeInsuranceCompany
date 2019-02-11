@@ -48,7 +48,7 @@
             this.lbCustomer = new System.Windows.Forms.ListBox();
             this.cbCustomer = new System.Windows.Forms.ComboBox();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbPolicyDetails.SuspendLayout();
@@ -85,11 +85,10 @@
             // 
             // txtYearlyPremium
             // 
-            this.txtYearlyPremium.Enabled = false;
             this.txtYearlyPremium.Location = new System.Drawing.Point(168, 44);
             this.txtYearlyPremium.Name = "txtYearlyPremium";
             this.txtYearlyPremium.Size = new System.Drawing.Size(232, 26);
-            this.txtYearlyPremium.TabIndex = 1;
+            this.txtYearlyPremium.TabIndex = 0;
             // 
             // lblYearlyPremium
             // 
@@ -117,7 +116,7 @@
             this.dateTimePickerPremiumStartDate.Location = new System.Drawing.Point(168, 150);
             this.dateTimePickerPremiumStartDate.Name = "dateTimePickerPremiumStartDate";
             this.dateTimePickerPremiumStartDate.Size = new System.Drawing.Size(232, 26);
-            this.dateTimePickerPremiumStartDate.TabIndex = 3;
+            this.dateTimePickerPremiumStartDate.TabIndex = 2;
             // 
             // cbPremiumPaid
             // 
@@ -130,7 +129,7 @@
             this.cbPremiumPaid.Location = new System.Drawing.Point(168, 96);
             this.cbPremiumPaid.Name = "cbPremiumPaid";
             this.cbPremiumPaid.Size = new System.Drawing.Size(232, 28);
-            this.cbPremiumPaid.TabIndex = 2;
+            this.cbPremiumPaid.TabIndex = 1;
             // 
             // lblStartDate
             // 
@@ -259,16 +258,16 @@
             this.lblCustomer.TabIndex = 0;
             this.lblCustomer.Text = "Customer:";
             // 
-            // btnClose
+            // btnCancel
             // 
-            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(340, 480);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(138, 40);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "&Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(340, 480);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(138, 40);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnClear
             // 
@@ -277,7 +276,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(138, 40);
             this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "&Clear";
+            this.btnClear.Text = "C&lear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -297,7 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 553);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbSaleDetails);
@@ -339,7 +338,7 @@
         private System.Windows.Forms.ListBox lbCustomer;
         private System.Windows.Forms.ComboBox cbCustomer;
         private System.Windows.Forms.Label lblCustomer;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtYearlyPremium;

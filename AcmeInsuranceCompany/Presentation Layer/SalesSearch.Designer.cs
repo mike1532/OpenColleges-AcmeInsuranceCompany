@@ -34,7 +34,7 @@
             this.rbLastName = new System.Windows.Forms.RadioButton();
             this.rbProduct = new System.Windows.Forms.RadioButton();
             this.rbListAll = new System.Windows.Forms.RadioButton();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -71,7 +71,7 @@
             this.rbLastName.Location = new System.Drawing.Point(59, 177);
             this.rbLastName.Name = "rbLastName";
             this.rbLastName.Size = new System.Drawing.Size(178, 24);
-            this.rbLastName.TabIndex = 4;
+            this.rbLastName.TabIndex = 2;
             this.rbLastName.Text = "Search on last name";
             this.rbLastName.UseVisualStyleBackColor = true;
             this.rbLastName.CheckedChanged += new System.EventHandler(this.rbLastName_CheckedChanged);
@@ -82,7 +82,7 @@
             this.rbProduct.Location = new System.Drawing.Point(59, 113);
             this.rbProduct.Name = "rbProduct";
             this.rbProduct.Size = new System.Drawing.Size(167, 24);
-            this.rbProduct.TabIndex = 2;
+            this.rbProduct.TabIndex = 1;
             this.rbProduct.Text = "Search on product";
             this.rbProduct.UseVisualStyleBackColor = true;
             this.rbProduct.CheckedChanged += new System.EventHandler(this.rbProduct_CheckedChanged);
@@ -100,16 +100,16 @@
             this.rbListAll.UseVisualStyleBackColor = true;
             this.rbListAll.CheckedChanged += new System.EventHandler(this.rbListAll_CheckedChanged);
             // 
-            // btnClose
+            // btnCancel
             // 
-            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(339, 303);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(138, 40);
-            this.btnClose.TabIndex = 6;
-            this.btnClose.Text = "&Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(339, 303);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(138, 40);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSearch
             // 
@@ -117,7 +117,7 @@
             this.btnSearch.Location = new System.Drawing.Point(129, 303);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(138, 40);
-            this.btnSearch.TabIndex = 5;
+            this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -127,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 378);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lbCategory);
             this.Controls.Add(this.cbProduct);
@@ -154,7 +154,7 @@
         private System.Windows.Forms.RadioButton rbLastName;
         private System.Windows.Forms.RadioButton rbProduct;
         private System.Windows.Forms.RadioButton rbListAll;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSearch;
     }
 }

@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//allows access to the presentation layer
-//using AcmeInsuranceCompany.Presentation_Layer;
+//using System.IO;
+
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
@@ -19,7 +19,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
-        //menu options       
+        // File menu options       
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCustomersView customersView = new frmCustomersView();
@@ -55,18 +55,23 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Application.Exit();
         }
 
+        //Help menu options
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmAbout about = new frmAbout();
             about.ShowDialog();
         }
-
+        private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTutorialScreen tutorial = new frmTutorialScreen();
+            tutorial.ShowDialog();
+        }
         //button
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-      
+       
     }
 }

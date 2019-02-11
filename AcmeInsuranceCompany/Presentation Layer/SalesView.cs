@@ -111,6 +111,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Application.Exit();
         }
 
+        //Help menu options
+        private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTutorialScreen tutorial = new frmTutorialScreen();
+            tutorial.ShowDialog();
+        }
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmAbout about = new frmAbout();

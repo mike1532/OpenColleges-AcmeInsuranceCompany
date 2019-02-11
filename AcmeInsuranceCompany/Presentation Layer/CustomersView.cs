@@ -69,7 +69,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Hide();
         }
 
-        //menu options - needs to be linked up to the appropriate click event
+        //File menu options - needs to be linked up to the appropriate click event
         private void mainScreenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmMainForm mainForm = new frmMainForm();
@@ -111,10 +111,16 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Application.Exit();
         }
 
+        //Help menu options
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmAbout about = new frmAbout();
             about.ShowDialog();
+        }              
+        private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTutorialScreen tutorial = new frmTutorialScreen();
+            tutorial.ShowDialog();
         }
 
 

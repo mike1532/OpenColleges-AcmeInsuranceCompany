@@ -60,7 +60,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(266, 145);
+            this.pictureBox1.Location = new System.Drawing.Point(286, 145);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(211, 232);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -69,12 +69,14 @@
             // 
             // lblUnleasedBusinessSolutions
             // 
+            this.lblUnleasedBusinessSolutions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblUnleasedBusinessSolutions.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnleasedBusinessSolutions.Location = new System.Drawing.Point(234, 414);
+            this.lblUnleasedBusinessSolutions.Location = new System.Drawing.Point(0, 424);
             this.lblUnleasedBusinessSolutions.Name = "lblUnleasedBusinessSolutions";
-            this.lblUnleasedBusinessSolutions.Size = new System.Drawing.Size(306, 30);
+            this.lblUnleasedBusinessSolutions.Size = new System.Drawing.Size(782, 29);
             this.lblUnleasedBusinessSolutions.TabIndex = 3;
-            this.lblUnleasedBusinessSolutions.Text = "© Unleased Business Solutions 2019";
+            this.lblUnleasedBusinessSolutions.Text = "Version 1.0.0    © Unleased Business Solutions 2019 ";
+            this.lblUnleasedBusinessSolutions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmAbout
             // 
