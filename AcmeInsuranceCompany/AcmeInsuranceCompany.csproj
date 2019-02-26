@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data Access Layer\ConnectionManager.cs" />
     <Compile Include="Presentation Layer\About.cs">
       <SubType>Form</SubType>
     </Compile>
