@@ -49,7 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business Logic Layer\Customer.cs" />
     <Compile Include="Data Access Layer\ConnectionManager.cs" />
+    <Compile Include="GlobalVariable.cs" />
     <Compile Include="Presentation Layer\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,5 +276,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

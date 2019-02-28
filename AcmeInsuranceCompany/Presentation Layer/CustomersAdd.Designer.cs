@@ -308,9 +308,18 @@
             // 
             this.cbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbState.FormattingEnabled = true;
+            this.cbState.Items.AddRange(new object[] {
+            "ACT",
+            "NSW",
+            "NT",
+            "QLD",
+            "SA",
+            "VIC",
+            "WA"});
             this.cbState.Location = new System.Drawing.Point(104, 129);
             this.cbState.Name = "cbState";
             this.cbState.Size = new System.Drawing.Size(98, 28);
+            this.cbState.Sorted = true;
             this.cbState.TabIndex = 2;
             // 
             // lblPostcode

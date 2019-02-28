@@ -19,6 +19,11 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
+        private void frmMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         // File menu options       
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -54,7 +59,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             Application.Exit();
         }
-
         //Help menu options
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -66,6 +70,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             frmTutorialScreen tutorial = new frmTutorialScreen();
             tutorial.ShowDialog();
         }
+        
         //button
         private void btnExit_Click(object sender, EventArgs e)
         {

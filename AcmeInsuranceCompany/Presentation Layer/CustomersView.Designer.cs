@@ -95,67 +95,79 @@
             // 
             // columnHeader1
             // 
+            this.columnHeader1.DisplayIndex = 10;
+            this.columnHeader1.Text = "";
             this.columnHeader1.Width = 0;
             // 
             // columnHeader2
             // 
+            this.columnHeader2.DisplayIndex = 0;
             this.columnHeader2.Text = "Customer ID";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 102;
             // 
             // columnHeader11
             // 
+            this.columnHeader11.DisplayIndex = 1;
             this.columnHeader11.Text = "Category";
             this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader11.Width = 85;
             // 
             // columnHeader3
             // 
+            this.columnHeader3.DisplayIndex = 2;
             this.columnHeader3.Text = "First Name";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 95;
             // 
             // columnHeader4
             // 
+            this.columnHeader4.DisplayIndex = 3;
             this.columnHeader4.Text = "Last Name";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 95;
             // 
             // columnHeader5
             // 
+            this.columnHeader5.DisplayIndex = 4;
             this.columnHeader5.Text = "Address";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 217;
+            this.columnHeader5.Width = 167;
             // 
             // columnHeader6
             // 
+            this.columnHeader6.DisplayIndex = 5;
             this.columnHeader6.Text = "Suburb";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 80;
             // 
             // columnHeader7
             // 
+            this.columnHeader7.DisplayIndex = 6;
             this.columnHeader7.Text = "State";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader7.Width = 65;
             // 
             // columnHeader8
             // 
+            this.columnHeader8.DisplayIndex = 7;
             this.columnHeader8.Text = "Postcode";
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader8.Width = 85;
             // 
             // columnHeader9
             // 
+            this.columnHeader9.DisplayIndex = 8;
             this.columnHeader9.Text = "Gender";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader9.Width = 75;
             // 
             // columnHeader10
             // 
+            this.columnHeader10.DisplayIndex = 9;
             this.columnHeader10.Text = "D.O.B";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 55;
+            this.columnHeader10.Width = 105;
             // 
             // btnAdd
             // 
@@ -291,14 +303,14 @@
             // tutorialToolStripMenuItem
             // 
             this.tutorialToolStripMenuItem.Name = "tutorialToolStripMenuItem";
-            this.tutorialToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.tutorialToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.tutorialToolStripMenuItem.Text = "Tutorial";
             this.tutorialToolStripMenuItem.Click += new System.EventHandler(this.tutorialToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(135, 26);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
