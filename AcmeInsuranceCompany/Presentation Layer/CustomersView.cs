@@ -44,6 +44,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             lvCustomers.Items.Clear();
             DisplayCustomers();
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //TODO - code to update selected customer record
