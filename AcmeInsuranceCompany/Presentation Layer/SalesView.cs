@@ -114,8 +114,10 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //Help menu options
         private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTutorialScreen tutorial = new frmTutorialScreen();
-            tutorial.ShowDialog();
+            //launches tutorial pdf file stored in resources.resx file            
+            String openPDFFile = "Tutorial ver2.0.pdf";
+            System.IO.File.WriteAllBytes(openPDFFile, global::AcmeInsuranceCompany.Properties.Resources.Tutorial_ver2_0);
+            System.Diagnostics.Process.Start(openPDFFile);
         }
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
