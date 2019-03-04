@@ -30,9 +30,14 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbCustomerDetails = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblDay = new System.Windows.Forms.Label();
+            this.txtBirthYear = new System.Windows.Forms.TextBox();
+            this.cbBirthMonth = new System.Windows.Forms.ComboBox();
+            this.txtBirthDay = new System.Windows.Forms.TextBox();
             this.lbCategory = new System.Windows.Forms.ListBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -75,9 +80,14 @@
             // 
             // gbCustomerDetails
             // 
+            this.gbCustomerDetails.Controls.Add(this.label2);
+            this.gbCustomerDetails.Controls.Add(this.label1);
+            this.gbCustomerDetails.Controls.Add(this.lblDay);
+            this.gbCustomerDetails.Controls.Add(this.txtBirthYear);
+            this.gbCustomerDetails.Controls.Add(this.cbBirthMonth);
+            this.gbCustomerDetails.Controls.Add(this.txtBirthDay);
             this.gbCustomerDetails.Controls.Add(this.lbCategory);
             this.gbCustomerDetails.Controls.Add(this.cbCategory);
-            this.gbCustomerDetails.Controls.Add(this.dateTimePickerDOB);
             this.gbCustomerDetails.Controls.Add(this.rbFemale);
             this.gbCustomerDetails.Controls.Add(this.rbMale);
             this.gbCustomerDetails.Controls.Add(this.txtLastName);
@@ -89,16 +99,86 @@
             this.gbCustomerDetails.Controls.Add(this.lblFirstName);
             this.gbCustomerDetails.Location = new System.Drawing.Point(12, 137);
             this.gbCustomerDetails.Name = "gbCustomerDetails";
-            this.gbCustomerDetails.Size = new System.Drawing.Size(466, 284);
+            this.gbCustomerDetails.Size = new System.Drawing.Size(466, 307);
             this.gbCustomerDetails.TabIndex = 0;
             this.gbCustomerDetails.TabStop = false;
             this.gbCustomerDetails.Text = "Customer Details";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label2.Location = new System.Drawing.Point(259, 236);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "MONTH";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(379, 235);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "YYYY";
+            // 
+            // lblDay
+            // 
+            this.lblDay.AutoSize = true;
+            this.lblDay.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblDay.Location = new System.Drawing.Point(181, 235);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(21, 15);
+            this.lblDay.TabIndex = 10;
+            this.lblDay.Text = "DD";
+            // 
+            // txtBirthYear
+            // 
+            this.txtBirthYear.Location = new System.Drawing.Point(346, 206);
+            this.txtBirthYear.Name = "txtBirthYear";
+            this.txtBirthYear.Size = new System.Drawing.Size(93, 26);
+            this.txtBirthYear.TabIndex = 9;
+            // 
+            // cbBirthMonth
+            // 
+            this.cbBirthMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBirthMonth.FormattingEnabled = true;
+            this.cbBirthMonth.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.cbBirthMonth.Location = new System.Drawing.Point(232, 205);
+            this.cbBirthMonth.Name = "cbBirthMonth";
+            this.cbBirthMonth.Size = new System.Drawing.Size(101, 28);
+            this.cbBirthMonth.TabIndex = 8;
+            // 
+            // txtBirthDay
+            // 
+            this.txtBirthDay.Location = new System.Drawing.Point(164, 206);
+            this.txtBirthDay.Name = "txtBirthDay";
+            this.txtBirthDay.Size = new System.Drawing.Size(55, 26);
+            this.txtBirthDay.TabIndex = 7;
             // 
             // lbCategory
             // 
             this.lbCategory.FormattingEnabled = true;
             this.lbCategory.ItemHeight = 20;
-            this.lbCategory.Location = new System.Drawing.Point(393, 231);
+            this.lbCategory.Location = new System.Drawing.Point(440, 260);
             this.lbCategory.Name = "lbCategory";
             this.lbCategory.Size = new System.Drawing.Size(20, 24);
             this.lbCategory.TabIndex = 6;
@@ -108,25 +188,15 @@
             // 
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(178, 231);
+            this.cbCategory.Location = new System.Drawing.Point(164, 259);
             this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(209, 28);
+            this.cbCategory.Size = new System.Drawing.Size(275, 28);
             this.cbCategory.TabIndex = 6;
-            // 
-            // dateTimePickerDOB
-            // 
-            this.dateTimePickerDOB.CustomFormat = "dd/MMM/yyyy";
-            this.dateTimePickerDOB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerDOB.Location = new System.Drawing.Point(178, 185);
-            this.dateTimePickerDOB.Name = "dateTimePickerDOB";
-            this.dateTimePickerDOB.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateTimePickerDOB.Size = new System.Drawing.Size(209, 26);
-            this.dateTimePickerDOB.TabIndex = 5;
             // 
             // rbFemale
             // 
             this.rbFemale.AutoSize = true;
-            this.rbFemale.Location = new System.Drawing.Point(304, 139);
+            this.rbFemale.Location = new System.Drawing.Point(328, 153);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(83, 24);
             this.rbFemale.TabIndex = 4;
@@ -138,7 +208,7 @@
             // 
             this.rbMale.AutoSize = true;
             this.rbMale.Checked = true;
-            this.rbMale.Location = new System.Drawing.Point(178, 139);
+            this.rbMale.Location = new System.Drawing.Point(184, 153);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(68, 24);
             this.rbMale.TabIndex = 3;
@@ -148,22 +218,22 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(178, 91);
+            this.txtLastName.Location = new System.Drawing.Point(164, 98);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(209, 26);
+            this.txtLastName.Size = new System.Drawing.Size(275, 26);
             this.txtLastName.TabIndex = 2;
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(178, 44);
+            this.txtFirstName.Location = new System.Drawing.Point(164, 44);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(209, 26);
+            this.txtFirstName.Size = new System.Drawing.Size(275, 26);
             this.txtFirstName.TabIndex = 1;
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(13, 235);
+            this.lblCategory.Location = new System.Drawing.Point(13, 263);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(83, 20);
             this.lblCategory.TabIndex = 4;
@@ -172,16 +242,16 @@
             // lblDateOfBirth
             // 
             this.lblDateOfBirth.AutoSize = true;
-            this.lblDateOfBirth.Location = new System.Drawing.Point(13, 188);
+            this.lblDateOfBirth.Location = new System.Drawing.Point(13, 209);
             this.lblDateOfBirth.Name = "lblDateOfBirth";
-            this.lblDateOfBirth.Size = new System.Drawing.Size(46, 20);
+            this.lblDateOfBirth.Size = new System.Drawing.Size(103, 20);
             this.lblDateOfBirth.TabIndex = 3;
-            this.lblDateOfBirth.Text = "DOB:";
+            this.lblDateOfBirth.Text = "Date of Birth:";
             // 
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(13, 141);
+            this.lblGender.Location = new System.Drawing.Point(13, 155);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(70, 20);
             this.lblGender.TabIndex = 2;
@@ -190,7 +260,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(13, 94);
+            this.lblLastName.Location = new System.Drawing.Point(13, 101);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(89, 20);
             this.lblLastName.TabIndex = 1;
@@ -199,7 +269,7 @@
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(15, 47);
+            this.lblFirstName.Location = new System.Drawing.Point(13, 47);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(87, 20);
             this.lblFirstName.TabIndex = 0;
@@ -276,7 +346,7 @@
             this.gbContactDetails.Controls.Add(this.lblState);
             this.gbContactDetails.Controls.Add(this.lblSuburb);
             this.gbContactDetails.Controls.Add(this.lblAddress);
-            this.gbContactDetails.Location = new System.Drawing.Point(551, 241);
+            this.gbContactDetails.Location = new System.Drawing.Point(551, 264);
             this.gbContactDetails.Name = "gbContactDetails";
             this.gbContactDetails.Size = new System.Drawing.Size(419, 180);
             this.gbContactDetails.TabIndex = 2;
@@ -334,7 +404,7 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(24, 133);
+            this.lblState.Location = new System.Drawing.Point(24, 137);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(50, 20);
             this.lblState.TabIndex = 2;
@@ -405,7 +475,6 @@
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.Label lblSuburb;
         private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDOB;
         private System.Windows.Forms.RadioButton rbFemale;
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.TextBox txtLastName;
@@ -418,5 +487,11 @@
         private System.Windows.Forms.TextBox txtPostcode;
         private System.Windows.Forms.ComboBox cbState;
         private System.Windows.Forms.ListBox lbCategory;
+        private System.Windows.Forms.TextBox txtBirthYear;
+        private System.Windows.Forms.ComboBox cbBirthMonth;
+        private System.Windows.Forms.TextBox txtBirthDay;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDay;
+        private System.Windows.Forms.Label label2;
     }
 }

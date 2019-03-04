@@ -9,6 +9,7 @@ namespace AcmeInsuranceCompany
     class GlobalVariable
     {
         public static int selectedCustomerID;
+        public static string customerSearchCriteria;
       
     }
 }

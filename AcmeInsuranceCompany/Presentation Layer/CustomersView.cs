@@ -26,10 +26,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             DisplayCustomers();
         }
+
         private void frmCustomersView_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
         private void frmCustomersView_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -47,28 +49,70 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //TODO - code to update selected customer record
+            /*
+             * Prompts user for selection if nothing has been selected. Assigns CustomerID to 
+             * selectedCustomerID variable. Loads edit screen with selected customers information
+             */
+
+            if(lvCustomers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a customer to update");
+                return;
+            }
+
+            GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
             frmCustomersAdd editForm = new frmCustomersAdd();
             editForm.ChangeAddToEdit("Edit Customer Details", " Edit Customer Details", "Update");            
             editForm.ShowDialog();
-            Hide();
-            
+            lvCustomers.Items.Clear();
+            DisplayCustomers();            
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected customer record
+            /*
+             * Checks that user has selected a customer to delete. Confirms that the user wants to continue
+             * with the deletion. Connects to DB, runs Stored Proc, Displays updated list.
+            */
+            if(lvCustomers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a customer to delete.");
+                return;
+            }
+            
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
                                             "Delete Customer Record?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            if(dialogResult == DialogResult.No)
                 return;
+
+            GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
+            string deleteQuery = "sp_Customers_DeleteCustomer";
+
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            connection.Open();
+            SqlCommand command = new SqlCommand(deleteQuery, connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@CustomerID", GlobalVariable.selectedCustomerID);
+            command.Transaction = connection.BeginTransaction();
+            command.ExecuteNonQuery();
+            command.Transaction.Commit();
+            connection.Close();
+
+            lvCustomers.Items.Clear();
+            DisplayCustomers();
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO - code to search records
+            GlobalVariable.customerSearchCriteria = "";
             frmCustomersSearch customersSearch = new frmCustomersSearch();
             customersSearch.ShowDialog();
+            lvCustomers.Items.Clear();
+            DisplayCustomers();
                             
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             frmMainForm mainForm = new frmMainForm();
@@ -83,46 +127,54 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             mainForm.Show();
             Hide();
         }
+
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCustomersView customersView = new frmCustomersView();
             customersView.Show();
             Hide();
         }
+
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCategoriesView categoriesView = new frmCategoriesView();
             categoriesView.Show();
             Hide();
         }
+
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProductsView productsView = new frmProductsView();
             productsView.Show();
             Hide();
         }
+
         private void productTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProductTypesView productTypesView = new frmProductTypesView();
             productTypesView.Show();
             Hide();
         }
+
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSalesView salesView = new frmSalesView();
             salesView.Show();
             Hide();
         }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
         //Help menu options
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmAbout about = new frmAbout();
             about.ShowDialog();
-        }              
+        } 
+        
         private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //launches tutorial pdf file stored in resources.resx file            
@@ -130,6 +182,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             System.IO.File.WriteAllBytes(openPDFFile, global::AcmeInsuranceCompany.Properties.Resources.Tutorial_ver2_0);
             System.Diagnostics.Process.Start(openPDFFile);
         }
+        /*-----------------------------------------------------------------------------------------------*/
 
         //displays customers to View Customers screen
         public void DisplayCustomers()
@@ -140,6 +193,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 "ON Customers.CategoryID = Categories.CategoryID";
 
             //TODO - add search criteria
+            selectQuery = selectQuery + " " + GlobalVariable.customerSearchCriteria;
 
             //Connects to DB and instantiates DataReaderObject
             SqlConnection connection = ConnectionManager.DatabaseConnection();
@@ -164,7 +218,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     Customer customer = new Customer(int.Parse(reader["CustomerID"].ToString()), reader["Category"].ToString(), reader["FirstName"].ToString(),
                                         reader["LastName"].ToString(), reader["Address"].ToString(), reader["Suburb"].ToString(),
                                         reader["State"].ToString(), int.Parse(reader["Postcode"].ToString()), gender,
-                                        DateTime.Parse(reader["BirthDate"].ToString()));
+                                        reader["BirthDate"].ToString());
 
                     //creates listview then adds items to lvCustomers
                     /*
@@ -183,7 +237,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     listView.SubItems.Add(customer.State);
                     listView.SubItems.Add(customer.Postcode.ToString());
                     listView.SubItems.Add(customer.Gender);
-                    listView.SubItems.Add(customer.BirthDate.ToString("dd/MM/yyyy"));
+                    DateTime bday = DateTime.Parse(customer.BirthDate);
+                    listView.SubItems.Add(bday.ToString("dd/MM/yyyy"));
 
                     lvCustomers.Items.Add(listView);                    
                 }

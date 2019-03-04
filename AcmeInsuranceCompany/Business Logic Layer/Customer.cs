@@ -10,9 +10,9 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
     class Customer
     {
         //declare customer properties
-        private string firstName, lastName, address, suburb, state, gender, category; 
-        private DateTime birthDate;
+        private string firstName, lastName, address, suburb, state, gender, category, birthDate;
         private int customerID, postcode;
+        
 
         //get-set properties
         public int CustomerID
@@ -60,7 +60,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
             get { return gender; }
             set { gender = value; }
         }
-        public DateTime BirthDate
+        public string BirthDate
         {
             get { return birthDate; }
             set { birthDate = value; }
@@ -71,7 +71,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
 
         //parameterised constructor
         public Customer(int customerID, string category, string firstName, string lastName, string address, string suburb,
-                        string state, int postcode, string gender, DateTime birthDate)
+                        string state, int postcode, string gender, string birthDate)
         {
             CustomerID = customerID;
             Category = category;

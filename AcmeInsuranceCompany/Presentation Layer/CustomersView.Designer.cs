@@ -86,6 +86,7 @@
             this.columnHeader10});
             this.lvCustomers.FullRowSelect = true;
             this.lvCustomers.Location = new System.Drawing.Point(12, 102);
+            this.lvCustomers.MultiSelect = false;
             this.lvCustomers.Name = "lvCustomers";
             this.lvCustomers.Size = new System.Drawing.Size(958, 368);
             this.lvCustomers.TabIndex = 2;
