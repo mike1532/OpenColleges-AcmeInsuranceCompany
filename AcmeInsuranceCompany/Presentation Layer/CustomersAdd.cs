@@ -108,7 +108,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //button click events
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ConfirmInput();
+            //validates input data, if data is valid -> create customer object
+            if (ConfirmInput() == true)
+                return;
             if (ConfirmDateOfBirthInput() == true)
                 return;
 
@@ -117,8 +119,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                                             int.Parse(txtPostcode.Text), Gender(), txtBirthDay.Text + "/" + cbBirthMonth.Text +
                                             "/" + txtBirthYear.Text);
 
-            /*Calls create/udate customer stored procedure, sets values into SP, 
-             * commit to DB, close connection.             
+            /*Calls create/udate customer stored procedure 
+             * sets values into SP
+             * commit to DB then close connection             
              */
             string addQuery;            
 
@@ -207,12 +210,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
        private bool ConfirmDateOfBirthInput()
         {
-            Regex DateInput = new Regex(@"\d$");
+            Regex DateInput = new Regex(@"^[1-3[0-9]$");
             Regex YearInput = new Regex(@"^[1-2][0-9]{3}$");
 
             if(!DateInput.IsMatch(txtBirthDay.Text))
             {
-                MessageBox.Show("Please check your Date of Birth\nDay must be in number format (dd)");
+                MessageBox.Show("Please check your Date of Birth\nDay must be in a number format\nbetween 1 and 31 (dd)");
                 return true;
             }
             if(cbBirthMonth.Text == String.Empty)
@@ -228,57 +231,56 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             return false;
         }
 
-        private void ConfirmInput()
+        private bool ConfirmInput()
         {
             
             //Checks all info is entered. Then creates customer object to add to DB
             if (String.IsNullOrEmpty(txtFirstName.Text))
             {
                 MessageBox.Show("Please enter the customer's first name");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(txtLastName.Text))
             {
                 MessageBox.Show("Please enter the customer's last name.");
-                return;
+                return true;
             }
             if (rbMale.Checked == false && rbFemale.Checked == false)
             {
                 MessageBox.Show("Please select a gender.");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(cbCategory.Text))
             {
                 MessageBox.Show("Please select a category.");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(txtAddress.Text))
             {
                 MessageBox.Show("Please enter an address");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(txtSuburb.Text))
             {
                 MessageBox.Show("Please enter a suburb.");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(cbState.Text))
             {
                 MessageBox.Show("Please select a state.");
-                return;
+                return true;
             }
             if (String.IsNullOrEmpty(txtPostcode.Text))
             {
                 MessageBox.Show("Please enter a postcode.");
-                return;
+                return true;
             }
             if (!int.TryParse(txtPostcode.Text, out int parsedValue))
             {
                 MessageBox.Show("Postcode must be a number.");
-                return;
+                return true;
             }
-            
-                       
+            return false;                      
         }
 
         private string Gender()

@@ -143,7 +143,7 @@
             this.txtBirthYear.Location = new System.Drawing.Point(346, 206);
             this.txtBirthYear.Name = "txtBirthYear";
             this.txtBirthYear.Size = new System.Drawing.Size(93, 26);
-            this.txtBirthYear.TabIndex = 9;
+            this.txtBirthYear.TabIndex = 7;
             // 
             // cbBirthMonth
             // 
@@ -165,14 +165,14 @@
             this.cbBirthMonth.Location = new System.Drawing.Point(232, 205);
             this.cbBirthMonth.Name = "cbBirthMonth";
             this.cbBirthMonth.Size = new System.Drawing.Size(101, 28);
-            this.cbBirthMonth.TabIndex = 8;
+            this.cbBirthMonth.TabIndex = 6;
             // 
             // txtBirthDay
             // 
             this.txtBirthDay.Location = new System.Drawing.Point(164, 206);
             this.txtBirthDay.Name = "txtBirthDay";
             this.txtBirthDay.Size = new System.Drawing.Size(55, 26);
-            this.txtBirthDay.TabIndex = 7;
+            this.txtBirthDay.TabIndex = 5;
             // 
             // lbCategory
             // 
@@ -191,7 +191,7 @@
             this.cbCategory.Location = new System.Drawing.Point(164, 259);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(275, 28);
-            this.cbCategory.TabIndex = 6;
+            this.cbCategory.TabIndex = 8;
             // 
             // rbFemale
             // 

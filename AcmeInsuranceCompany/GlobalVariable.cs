@@ -10,6 +10,9 @@ namespace AcmeInsuranceCompany
     {
         public static int selectedCustomerID;
         public static string customerSearchCriteria;
+
+        public static int selectedCategoryID;
+        public static string categorySearchCriteria;
       
     }
 }

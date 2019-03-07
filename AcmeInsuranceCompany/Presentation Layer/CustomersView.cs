@@ -192,7 +192,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 " Customers.Gender, Customers.BirthDate FROM Customers INNER JOIN Categories " +
                 "ON Customers.CategoryID = Categories.CategoryID";
 
-            //TODO - add search criteria
+            //search criteria
             selectQuery = selectQuery + " " + GlobalVariable.customerSearchCriteria;
 
             //Connects to DB and instantiates DataReaderObject
@@ -240,7 +240,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     DateTime bday = DateTime.Parse(customer.BirthDate);
                     listView.SubItems.Add(bday.ToString("dd/MM/yyyy"));
 
-                    lvCustomers.Items.Add(listView);                    
+                    lvCustomers.Items.Add(listView);
                 }
                 //if null, close reader and connection
                 if (reader != null)
@@ -250,10 +250,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             catch (Exception ex)
             {
                 MessageBox.Show("Unsuccessful" + ex);
-                //adding application exit incase it goes into infinite loop
-                Application.Exit();
-            }
-                        
+            }                            
         }
 
     }
