@@ -19,6 +19,11 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }
 
+        private void frmMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         // File menu options       
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -63,9 +68,14 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         }
         private void tutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTutorialScreen tutorial = new frmTutorialScreen();
-            tutorial.ShowDialog();
+            //launches tutorial pdf file stored in resources.resx file            
+            String openPDFFile = "Tutorial ver2.0.pdf";
+            System.IO.File.WriteAllBytes(openPDFFile, global::AcmeInsuranceCompany.Properties.Resources.Tutorial_ver2_0);
+            System.Diagnostics.Process.Start(openPDFFile);
+
+            //code sourced from stackoverflow.com/questions/8609476/how-to-open-a-pdf-file-that-is-also-a-project-resource
         }
+
         //button
         private void btnExit_Click(object sender, EventArgs e)
         {

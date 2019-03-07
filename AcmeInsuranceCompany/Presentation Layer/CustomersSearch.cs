@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//added
+using System.Data.SqlClient;
+using AcmeInsuranceCompany.Data_Access_Layer;
+using AcmeInsuranceCompany.Presentation_Layer;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
@@ -47,12 +51,46 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             txtSearch.Visible = false;
             cbCategory.Visible = false;
+
+            string selectQuery = "SELECT * FROM Categories";
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            SqlDataReader reader = null;
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(selectQuery, connection);
+                reader = command.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    lbCategory.Items.Add(reader["CategoryID"].ToString());
+                    cbCategory.Items.Add(reader["Category"].ToString());
+                }
+                if (reader != null)
+                    reader.Close();
+                connection.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Unsucessful" + ex);
+            }
+            
         }
 
         //buttons
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //TODO - code to search databse
+            if (rbListAll.Checked == true)
+                GlobalVariable.customerSearchCriteria = "";
+            if(rbLastName.Checked == true)
+                GlobalVariable.customerSearchCriteria = "WHERE LastName = '" + txtSearch.Text + "'";
+            if (rbCategory.Checked == true)
+                GlobalVariable.customerSearchCriteria = "WHERE Customers.CategoryID = '" + lbCategory.Items[cbCategory.SelectedIndex].ToString() + "'";
+            if (rbPostcode.Checked == true)
+                GlobalVariable.customerSearchCriteria = "WHERE Postcode = '" + txtSearch.Text + "'";
+            Close();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
