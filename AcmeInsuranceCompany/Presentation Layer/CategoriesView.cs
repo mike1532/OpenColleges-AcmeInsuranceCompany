@@ -24,8 +24,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //events
         private void frmCategoriesView_Load(object sender, EventArgs e)
         {
-            //DisplayCategory();
+            DisplayCategories();
         }
+
         private void frmCategoriesView_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -34,17 +35,33 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            GlobalVariable.selectedCategoryID = 0;
             frmCategoriesAdd categoriesAdd = new frmCategoriesAdd();
             categoriesAdd.ShowDialog();
-            Hide();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            /*
+             * Prompts user for selection if nothing has been selected. Assigns CategoryID to 
+             * selectedCategoryID variable. Loads edit screen with selected category information
+             */
+             if (lvCategories.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please choose a category to update");
+                return;
+            }
+
+            GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
             frmCategoriesAdd editForm = new frmCategoriesAdd();
             editForm.ChangeAddToEdit("Edit Category", " Edit Category Details", "Update");
             editForm.ShowDialog();
-            Hide();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //TODO - code to delete selected category
@@ -57,11 +74,13 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //add code to check to see if category is being used. if being used tell user that it is
             //unable to be deleted. Try/Catch block?
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             frmCategoriesSearch categoriesSearch = new frmCategoriesSearch();
             categoriesSearch.ShowDialog();
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             frmMainForm mainForm = new frmMainForm();
@@ -149,22 +168,25 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 SqlCommand command = new SqlCommand(selectQuery, connection);
                 reader = command.ExecuteReader();
 
-                //Call constructor
-                Category category = new Category(int.Parse(reader["CustomerID"].ToString()), reader["Category"].ToString());
+                while (reader.Read())
+                {
+                    //Call constructor
+                    Category category = new Category(int.Parse(reader["CategoryID"].ToString()), reader["Category"].ToString());
 
-                /*
-                 * Create listview -> add items to lvCategory -> Close connection. Added the empty 
-                 * first line to allow for the extra column added at the beginning of the list view. 
-                 * 
-                 ***Extra column was added (width of 0) to allow for all headings to be centered, as you cannot 
-                 *  center the first column in a list view***
-                 */
+                    /*
+                     * Create listview -> add items to lvCategory -> Close connection. Added the empty 
+                     * first line to allow for the extra column added at the beginning of the list view. 
+                     * 
+                     ***Extra column was added (width of 0) to allow for all headings to be centered, as you cannot 
+                     *  center the first column in a list view***
+                     */
 
-                ListViewItem listView = new ListViewItem("");
-                listView.SubItems.Add(category.CategoryID.ToString());
-                listView.SubItems.Add(category.CategoryName.ToString());
+                    ListViewItem listView = new ListViewItem("");
+                    listView.SubItems.Add(category.CategoryID.ToString());
+                    listView.SubItems.Add(category.CategoryType.ToString());
 
-                lvCategories.Items.Add(listView);
+                    lvCategories.Items.Add(listView);
+                }
 
                 if (reader != null)
                     reader.Close();
@@ -177,4 +199,5 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             }
         }
     }
+}
 

@@ -146,6 +146,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Category";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCategoriesAdd_FormClosing);
+            this.Load += new System.EventHandler(this.frmCategoriesAdd_Load);
             this.gbCategoryDetails.ResumeLayout(false);
             this.gbCategoryDetails.PerformLayout();
             this.ResumeLayout(false);

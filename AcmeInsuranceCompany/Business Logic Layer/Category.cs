@@ -10,7 +10,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
     {
         //declare category properties
         private int categoryID;
-        private string categoryName;
+        private string categoryType;
 
         //get/set properties
         public int CategoryID
@@ -18,19 +18,19 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
             get { return categoryID; }
             set { categoryID = value; }
         }
-        public string CategoryName
+        public string CategoryType
         {
-            get { return categoryName; }
-            set { categoryName = value; }
+            get { return categoryType; }
+            set { categoryType = value; }
         }
 
         //default and parametised constructor
        public Category() { }
 
-        public Category(int categoryID, string categoryName)
+        public Category(int categoryID, string categoryType)
         {
             CategoryID = categoryID;
-            CategoryName = categoryName;
+            CategoryType = categoryType;
         }
 
 
