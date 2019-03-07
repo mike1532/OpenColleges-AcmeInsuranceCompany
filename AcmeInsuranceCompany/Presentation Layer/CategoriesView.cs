@@ -64,15 +64,63 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected category
+            //Prompts user to select category if one has not been selected
+            if (lvCategories.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a category to delete");
+            }
 
+            //declare variables
+            int recordCount = 0;
+            GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
+            string allowDelete = "sp_Categories_AllowDeleteCategory";
+
+            SqlConnection connection = ConnectionManager.DatabaseConnection();                       
+            SqlCommand command = new SqlCommand(allowDelete, connection);
+
+            //adds values to AllowDelete stored proc
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@CategoryID", GlobalVariable.selectedCategoryID);
+            SqlParameter ReturnValue = new SqlParameter("@RecordCount", SqlDbType.Int);
+            ReturnValue.Direction = ParameterDirection.Output;
+            command.Parameters.Add(ReturnValue);
+
+            //Opens DB. Executes stored proc. Assigns @RecordCount output to recordCount variable. Closes DB
+            connection.Open();
+            command.Transaction = connection.BeginTransaction();
+            command.ExecuteNonQuery();
+            recordCount = (int)command.Parameters["@RecordCount"].Value;
+            connection.Close();
+
+            //If category is being used, prompt user 
+            if (recordCount > 0)
+            {
+                MessageBox.Show("Category is unable to be deleted. Category is being used.");
+            }
+            //TODO DELETE
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //message to show if category is able to be deleted
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this category?",
+           /* DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this category?",
                                             "Delete Category?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
                 return;
             //add code to check to see if category is being used. if being used tell user that it is
-            //unable to be deleted. Try/Catch block?
+            //unable to be deleted. Try/Catch block?*/
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
