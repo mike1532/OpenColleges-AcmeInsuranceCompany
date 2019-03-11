@@ -21,16 +21,14 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         private void frmCategoriesSearch_Load(object sender, EventArgs e)
         {
            
-        }
-
-        private void rbListAll_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
+        }               
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //TODO code to search categories
+            if (rbListAll.Checked == true)
+                GlobalVariable.categorySearchCriteria = "";
+            Close();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

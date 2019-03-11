@@ -44,7 +44,6 @@
             this.rbListAll.TabStop = true;
             this.rbListAll.Text = "List all records";
             this.rbListAll.UseVisualStyleBackColor = true;
-            this.rbListAll.CheckedChanged += new System.EventHandler(this.rbListAll_CheckedChanged);
             // 
             // btnSearch
             // 

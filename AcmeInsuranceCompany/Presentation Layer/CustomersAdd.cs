@@ -38,9 +38,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(selectQuery, connection);
-                reader = command.ExecuteReader();
+                reader = command.ExecuteReader();                
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     lbCategory.Items.Add(reader["CategoryID"].ToString());
                     cbCategory.Items.Add(reader["Category"].ToString());
@@ -135,8 +135,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             }
 
 
-            SqlConnection connection = ConnectionManager.DatabaseConnection();
-            connection.Open();
+            SqlConnection connection = ConnectionManager.DatabaseConnection();            
             SqlCommand command = new SqlCommand(addQuery, connection);
 
             command.CommandType = CommandType.StoredProcedure;
@@ -158,10 +157,10 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 command.Parameters.AddWithValue("@NewCustomerID", SqlDbType.Int).Direction = ParameterDirection.Output;
             }
 
+            connection.Open();
             command.Transaction = connection.BeginTransaction();
             command.ExecuteNonQuery();
             command.Transaction.Commit();
-
             connection.Close();
             Close();
 

@@ -70,7 +70,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 MessageBox.Show("Please select a category to delete");
             }
 
-            //declare variables
+            //declare variables then checks if AllowDelete stor proc comes back true.
             int recordCount = 0;
             GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
             string allowDelete = "sp_Categories_AllowDeleteCategory";
@@ -97,36 +97,49 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             {
                 MessageBox.Show("Category is unable to be deleted. Category is being used.");
             }
-            //TODO DELETE
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            //message to show if category is able to be deleted
-           /* DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this category?",
-                                            "Delete Category?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
-                return;
-            //add code to check to see if category is being used. if being used tell user that it is
-            //unable to be deleted. Try/Catch block?*/
+            else
+            {
+                try
+                {
+                    //If category is unused. Ask for user to confirm deletion of category. Delclare variables. Set SP
+                    //Open DB -> Execute Stored Proc -> Commit -> Refresh listview
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
+                                                    "Delete Category?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.No)
+                        return;
+
+                    GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
+                    string deleteQuery = "sp_Categories_DeleteCategory";
+                    SqlConnection connection1 = ConnectionManager.DatabaseConnection();
+                    SqlCommand command1 = new SqlCommand(deleteQuery, connection1);
+
+                    command1.CommandType = CommandType.StoredProcedure;
+                    command1.Parameters.AddWithValue("@CategoryID", GlobalVariable.selectedCategoryID);
+
+                    connection1.Open();
+                    command1.Transaction = connection1.BeginTransaction();
+                    command1.ExecuteNonQuery();
+                    command1.Transaction.Commit();
+                    connection1.Close();
+
+                    lvCategories.Items.Clear();
+                    DisplayCategories();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unsucessful" + ex);
+                }
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            GlobalVariable.customerSearchCriteria = "";
             frmCategoriesSearch categoriesSearch = new frmCategoriesSearch();
             categoriesSearch.ShowDialog();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -204,7 +217,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         public void DisplayCategories()
         {
             string selectQuery = "SELECT Categories.CategoryID, Categories.Category FROM Categories";
-            //TODO - SEARCH CRITERIA
+            
+            //Adds search criteria to selectQuery if search option is chosen.
+            selectQuery = selectQuery + " " + GlobalVariable.categorySearchCriteria;
 
             SqlConnection connection = ConnectionManager.DatabaseConnection();
             SqlDataReader reader = null;
