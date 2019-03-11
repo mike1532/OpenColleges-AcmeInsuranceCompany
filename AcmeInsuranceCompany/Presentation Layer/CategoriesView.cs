@@ -257,8 +257,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unsuccessful " + ex);
-                Application.Exit();
+                MessageBox.Show("Unsuccessful " + ex);                
             }
         }
     }

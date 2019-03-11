@@ -225,7 +225,7 @@
             this.columnHeader4.Tag = "";
             this.columnHeader4.Text = "Times Purchased";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 150;
+            this.columnHeader4.Width = 146;
             // 
             // btnExit
             // 
@@ -256,6 +256,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Acme Insurance Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainForm_FormClosing);
+            this.Load += new System.EventHandler(this.frmMainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAcmeLogo)).EndInit();
