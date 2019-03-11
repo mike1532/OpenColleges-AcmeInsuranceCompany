@@ -24,8 +24,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //events
         private void frmCategoriesView_Load(object sender, EventArgs e)
         {
-            //DisplayCategory();
+            DisplayCategories();
         }
+
         private void frmCategoriesView_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -34,34 +35,113 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            GlobalVariable.selectedCategoryID = 0;
             frmCategoriesAdd categoriesAdd = new frmCategoriesAdd();
             categoriesAdd.ShowDialog();
-            Hide();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            /*
+             * Prompts user for selection if nothing has been selected. Assigns CategoryID to 
+             * selectedCategoryID variable. Loads edit screen with selected category information
+             */
+             if (lvCategories.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please choose a category to update");
+                return;
+            }
+
+            GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
             frmCategoriesAdd editForm = new frmCategoriesAdd();
             editForm.ChangeAddToEdit("Edit Category", " Edit Category Details", "Update");
             editForm.ShowDialog();
-            Hide();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected category
+            //Prompts user to select category if one has not been selected
+            if (lvCategories.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a category to delete");
+            }
 
-            //message to show if category is able to be deleted
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this category?",
-                                            "Delete Category?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
-                return;
-            //add code to check to see if category is being used. if being used tell user that it is
-            //unable to be deleted. Try/Catch block?
+            //declare variables then checks if AllowDelete stor proc comes back true.
+            int recordCount = 0;
+            GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
+            string allowDelete = "sp_Categories_AllowDeleteCategory";
+
+            SqlConnection connection = ConnectionManager.DatabaseConnection();                       
+            SqlCommand command = new SqlCommand(allowDelete, connection);
+
+            //adds values to AllowDelete stored proc
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@CategoryID", GlobalVariable.selectedCategoryID);
+            SqlParameter ReturnValue = new SqlParameter("@RecordCount", SqlDbType.Int);
+            ReturnValue.Direction = ParameterDirection.Output;
+            command.Parameters.Add(ReturnValue);
+
+            //Opens DB. Executes stored proc. Assigns @RecordCount output to recordCount variable. Closes DB
+            connection.Open();
+            command.Transaction = connection.BeginTransaction();
+            command.ExecuteNonQuery();
+            recordCount = (int)command.Parameters["@RecordCount"].Value;
+            connection.Close();
+
+            //If category is being used, prompt user 
+            if (recordCount > 0)
+            {
+                MessageBox.Show("Category is unable to be deleted. Category is being used.");
+            }
+
+            else
+            {
+                try
+                {
+                    //If category is unused. Ask for user to confirm deletion of category. Delclare variables. Set SP
+                    //Open DB -> Execute Stored Proc -> Commit -> Refresh listview
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
+                                                    "Delete Category?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.No)
+                        return;
+
+                    GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
+                    string deleteQuery = "sp_Categories_DeleteCategory";
+                    SqlConnection connection1 = ConnectionManager.DatabaseConnection();
+                    SqlCommand command1 = new SqlCommand(deleteQuery, connection1);
+
+                    command1.CommandType = CommandType.StoredProcedure;
+                    command1.Parameters.AddWithValue("@CategoryID", GlobalVariable.selectedCategoryID);
+
+                    connection1.Open();
+                    command1.Transaction = connection1.BeginTransaction();
+                    command1.ExecuteNonQuery();
+                    command1.Transaction.Commit();
+                    connection1.Close();
+
+                    lvCategories.Items.Clear();
+                    DisplayCategories();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unsucessful" + ex);
+                }
+            }
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            GlobalVariable.customerSearchCriteria = "";
             frmCategoriesSearch categoriesSearch = new frmCategoriesSearch();
             categoriesSearch.ShowDialog();
+            lvCategories.Items.Clear();
+            DisplayCategories();
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             frmMainForm mainForm = new frmMainForm();
@@ -137,7 +217,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         public void DisplayCategories()
         {
             string selectQuery = "SELECT Categories.CategoryID, Categories.Category FROM Categories";
-            //TODO - SEARCH CRITERIA
+            
+            //Adds search criteria to selectQuery if search option is chosen.
+            selectQuery = selectQuery + " " + GlobalVariable.categorySearchCriteria;
 
             SqlConnection connection = ConnectionManager.DatabaseConnection();
             SqlDataReader reader = null;
@@ -149,22 +231,25 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 SqlCommand command = new SqlCommand(selectQuery, connection);
                 reader = command.ExecuteReader();
 
-                //Call constructor
-                Category category = new Category(int.Parse(reader["CustomerID"].ToString()), reader["Category"].ToString());
+                while (reader.Read())
+                {
+                    //Call constructor
+                    Category category = new Category(int.Parse(reader["CategoryID"].ToString()), reader["Category"].ToString());
 
-                /*
-                 * Create listview -> add items to lvCategory -> Close connection. Added the empty 
-                 * first line to allow for the extra column added at the beginning of the list view. 
-                 * 
-                 ***Extra column was added (width of 0) to allow for all headings to be centered, as you cannot 
-                 *  center the first column in a list view***
-                 */
+                    /*
+                     * Create listview -> add items to lvCategory -> Close connection. Added the empty 
+                     * first line to allow for the extra column added at the beginning of the list view. 
+                     * 
+                     ***Extra column was added (width of 0) to allow for all headings to be centered, as you cannot 
+                     *  center the first column in a list view***
+                     */
 
-                ListViewItem listView = new ListViewItem("");
-                listView.SubItems.Add(category.CategoryID.ToString());
-                listView.SubItems.Add(category.CategoryName.ToString());
+                    ListViewItem listView = new ListViewItem("");
+                    listView.SubItems.Add(category.CategoryID.ToString());
+                    listView.SubItems.Add(category.CategoryType.ToString());
 
-                lvCategories.Items.Add(listView);
+                    lvCategories.Items.Add(listView);
+                }
 
                 if (reader != null)
                     reader.Close();
@@ -177,4 +262,5 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             }
         }
     }
+}
 

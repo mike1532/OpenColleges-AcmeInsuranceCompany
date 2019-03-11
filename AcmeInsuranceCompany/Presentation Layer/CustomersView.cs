@@ -87,13 +87,13 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
             string deleteQuery = "sp_Customers_DeleteCustomer";
-
-            SqlConnection connection = ConnectionManager.DatabaseConnection();
-            connection.Open();
+            SqlConnection connection = ConnectionManager.DatabaseConnection();            
             SqlCommand command = new SqlCommand(deleteQuery, connection);
 
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@CustomerID", GlobalVariable.selectedCustomerID);
+
+            connection.Open();
             command.Transaction = connection.BeginTransaction();
             command.ExecuteNonQuery();
             command.Transaction.Commit();
