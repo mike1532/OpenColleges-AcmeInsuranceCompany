@@ -9,8 +9,8 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
     class Product
     {
         //Declare properties
-        private int productID, productType;
-        private string productName;
+        private int productID;
+        private string productName, productType;
         private decimal yearlyPremium;
 
         //Get-Set properties
@@ -19,7 +19,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
             get { return productID; }
             set { productID = value; }
         }
-        public int ProductType
+        public string ProductType
         {
             get { return productType; }
             set { productType = value; }
@@ -38,7 +38,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
         //Default and Parameterised constructor
         public Product() { }
 
-        public Product(int productID, int productType, string productName, decimal yearlyPremium)
+        public Product(int productID, string productType, string productName, decimal yearlyPremium)
         {
             ProductID = productID;
             ProductType = productType;

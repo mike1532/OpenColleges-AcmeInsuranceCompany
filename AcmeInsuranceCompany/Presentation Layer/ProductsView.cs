@@ -168,12 +168,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
                 while (reader.Read())
                 {
-                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), int.Parse(reader["ProductTypeID"].ToString()),
+                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductTypeID"].ToString(),
                                                   reader["ProductName"].ToString(), decimal.Parse(reader["YearlyPremium"].ToString()));
 
                     ListViewItem listView = new ListViewItem("");
                     listView.SubItems.Add(product.ProductID.ToString());
-                    listView.SubItems.Add(product.ProductType.ToString());
+                    listView.SubItems.Add(product.ProductType);
                     listView.SubItems.Add(product.ProductName);
                     listView.SubItems.Add(product.YearlyPremium.ToString("00.00"));
 

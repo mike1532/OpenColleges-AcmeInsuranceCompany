@@ -131,7 +131,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private bool CheckInput()
         {                        
-            if(txtCategory.Text == String.Empty)
+            if(String.IsNullOrEmpty(txtCategory.Text))
             {
                 MessageBox.Show("Please enter a category");
                 return true;

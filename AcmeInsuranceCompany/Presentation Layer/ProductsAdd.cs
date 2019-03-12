@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//Added
+using System.Data.SqlClient;
+using AcmeInsuranceCompany.Business_Logic_Layer;
+using AcmeInsuranceCompany.Data_Access_Layer;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
@@ -20,8 +24,35 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //events
         private void frmProductsAdd_Load(object sender, EventArgs e)
         {
-            //TODO load event
+            //Preloads Product Types into form. Opens DB. Loads into Form. Closes DB
+            string selectQuery = "SELECT * FROM ProductTypes";
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            SqlDataReader reader = null;
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(selectQuery, connection);
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lbProductType.Items.Add(reader["ProductTypeID"].ToString());
+                    cbProductType.Items.Add(reader["ProductType"].ToString());
+                }
+                if (reader != null)
+                    reader.Close();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unsuccessful " + ex);
+            }
+
+            //TODO ADD SELECTED PRODUCT TO EDIT FORM
+            
         }
+
         private void frmProductsAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmProductsView productsView = new frmProductsView();
@@ -32,17 +63,59 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //button events
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //TODO - code to clear entered data
+            ClearInfo();
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //TODO - code to add product
+            //Checks Input, Creates Product Object, Adds values to Stored Proc, Connects to DB, Execute SP, 
+            //Close Connection
+            if (CheckInput() == true)
+                return;
+
+            Product product = new Product(GlobalVariable.selectedProductID, lbProductType.Items[cbProductType.SelectedIndex].ToString(), 
+                                          txtProductName.Text, decimal.Parse(txtYearlyPremium.Text));
+
+            string addQuery;
+
+            if (GlobalVariable.selectedProductID == 0)
+            {
+                addQuery = "sp_Products_CreateProduct";
+            }
+            else
+            {
+                addQuery = "sp_Products_UpdateProduct";
+            }
+
+            SqlConnection connection1 = ConnectionManager.DatabaseConnection();
+            SqlCommand command1 = new SqlCommand(addQuery, connection1);
+            command1.CommandType = CommandType.StoredProcedure;
+
+            if (GlobalVariable.selectedProductID != 0)
+                command1.Parameters.AddWithValue("@ProductID", product.ProductID);
+            command1.Parameters.AddWithValue("@ProductTypeID", product.ProductType);
+            command1.Parameters.AddWithValue("@ProductName", product.ProductName);
+            command1.Parameters.AddWithValue("@YearlyPremium", product.YearlyPremium.ToString("00.00"));
+
+            if (GlobalVariable.selectedProductID == 0)
+            {
+                command1.Parameters.AddWithValue("@NewProductID", SqlDbType.Int).Direction = ParameterDirection.Output;
+            }
+
+            connection1.Open();
+            command1.Transaction = connection1.BeginTransaction();
+            command1.ExecuteNonQuery();
+            command1.Transaction.Commit();
+            connection1.Close();
+            Close();
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /*-----------------------------------------------------------------------------------------------*/
         //change from add to edit form
         public void ChangeAddToEdit(string form, string title, string button)
         {
@@ -52,6 +125,44 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             btnClear.Visible = false;
             btnCancel.Top = btnClear.Top;
             btnCancel.Left = btnClear.Left;
+        }
+
+        public void ClearInfo()
+        {
+            txtProductID.Clear();
+            txtProductName.Clear();
+            cbProductType.SelectedIndex = -1;
+            txtYearlyPremium.Clear();
+        }
+
+        public bool CheckInput()
+        {
+            if (String.IsNullOrEmpty(txtProductName.Text))
+            {
+                MessageBox.Show("Please enter a product name");
+                return true;
+            }
+            if (String.IsNullOrEmpty(cbProductType.Text))
+            {
+                MessageBox.Show("Please enter the product type");
+                return true;
+            }
+            if (String.IsNullOrEmpty(txtProductName.Text))
+            {
+                MessageBox.Show("Please enter a product name");
+                return true;
+            }
+            if (String.IsNullOrEmpty(txtYearlyPremium.Text))
+            {
+                MessageBox.Show("Please enter the product's yearly premium");
+                return true;
+            }
+            if (!int.TryParse(txtYearlyPremium.Text, out int parsedValue))
+            {
+                MessageBox.Show("Yearly Premium must be a numerical value.");
+                return true;
+            }
+            return false;
         }
 
     }
