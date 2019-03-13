@@ -44,10 +44,18 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (lvProducts.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a product to update");
+                return;
+            }
+
+            GlobalVariable.selectedProductID = int.Parse(lvProducts.SelectedItems[0].SubItems[1].Text);
             frmProductsAdd editForm = new frmProductsAdd();
             editForm.ChangeAddToEdit("Edit Product Details", " Edit Product Details", "Update");
             editForm.ShowDialog();
-            Hide();
+            lvProducts.Items.Clear();
+            DisplayProducts();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

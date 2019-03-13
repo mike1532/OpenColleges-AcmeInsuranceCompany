@@ -11,19 +11,22 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using AcmeInsuranceCompany.Business_Logic_Layer;
 using AcmeInsuranceCompany.Data_Access_Layer;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
     public partial class frmProductsAdd : Form
-    {
+    {               
         public frmProductsAdd()
         {
             InitializeComponent();
+            
         }
 
         //events
         private void frmProductsAdd_Load(object sender, EventArgs e)
-        {
+        {  
             //Preloads Product Types into form. Opens DB. Loads into Form. Closes DB
             string selectQuery = "SELECT * FROM ProductTypes";
             SqlConnection connection = ConnectionManager.DatabaseConnection();
@@ -49,8 +52,39 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 MessageBox.Show("Unsuccessful " + ex);
             }
 
-            //TODO ADD SELECTED PRODUCT TO EDIT FORM
-            
+            //Loads selected product into edit form
+            if (GlobalVariable.selectedProductID > 0)
+            {
+
+                selectQuery = "SELECT * FROM Products WHERE ProductID = " + GlobalVariable.selectedProductID.ToString();
+                SqlConnection connection1 = ConnectionManager.DatabaseConnection();
+                SqlDataReader reader1 = null;
+
+                try
+                {
+                    connection1.Open();
+                    SqlCommand command1 = new SqlCommand(selectQuery, connection1);
+                    reader1 = command1.ExecuteReader();
+                    reader1.Read();
+
+                    txtProductID.Text = reader1["ProductID"].ToString();
+                    txtProductName.Text = reader1["ProductName"].ToString();
+                    cbProductType.SelectedIndex = int.Parse(reader1["ProductTypeID"].ToString()) - 1;
+
+                    //Makes input into txtYearlyPremium a currency value ($00.00)
+                    string yearlyPremium = reader1["YearlyPremium"].ToString();
+                    decimal.TryParse(yearlyPremium, out decimal output);
+                    txtYearlyPremium.Text = output.ToString("C");
+
+                    
+                    reader1.Close();
+                    connection1.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unsuccessful " + ex);
+                }
+            }
         }
 
         private void frmProductsAdd_FormClosing(object sender, FormClosingEventArgs e)
@@ -95,7 +129,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 command1.Parameters.AddWithValue("@ProductID", product.ProductID);
             command1.Parameters.AddWithValue("@ProductTypeID", product.ProductType);
             command1.Parameters.AddWithValue("@ProductName", product.ProductName);
-            command1.Parameters.AddWithValue("@YearlyPremium", product.YearlyPremium.ToString("00.00"));
+            command1.Parameters.AddWithValue("@YearlyPremium", product.YearlyPremium.ToString("0.00"));
 
             if (GlobalVariable.selectedProductID == 0)
             {
@@ -165,5 +199,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             return false;
         }
 
+       
     }
 }

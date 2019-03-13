@@ -88,9 +88,9 @@
             this.lblYearlyPremium.AutoSize = true;
             this.lblYearlyPremium.Location = new System.Drawing.Point(359, 120);
             this.lblYearlyPremium.Name = "lblYearlyPremium";
-            this.lblYearlyPremium.Size = new System.Drawing.Size(146, 20);
+            this.lblYearlyPremium.Size = new System.Drawing.Size(122, 20);
             this.lblYearlyPremium.TabIndex = 7;
-            this.lblYearlyPremium.Text = "Yearly Premium:    $";
+            this.lblYearlyPremium.Text = "Yearly Premium:";
             // 
             // txtProductName
             // 

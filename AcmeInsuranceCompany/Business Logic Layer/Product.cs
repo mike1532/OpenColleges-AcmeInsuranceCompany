@@ -12,6 +12,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
         private int productID;
         private string productName, productType;
         private decimal yearlyPremium;
+        
 
         //Get-Set properties
         public int ProductID
