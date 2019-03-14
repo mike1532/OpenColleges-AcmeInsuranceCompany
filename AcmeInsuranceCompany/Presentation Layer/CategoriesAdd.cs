@@ -133,7 +133,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {                        
             if(String.IsNullOrEmpty(txtCategory.Text))
             {
-                MessageBox.Show("Please enter a category");
+                MessageBox.Show("Please enter a category", "Add New Category", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
                 return false;              

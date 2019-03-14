@@ -173,27 +173,32 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             if (String.IsNullOrEmpty(txtProductName.Text))
             {
-                MessageBox.Show("Please enter a product name");
+                MessageBox.Show("Please enter a product name", "Add New Product", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(cbProductType.Text))
             {
-                MessageBox.Show("Please enter the product type");
+                MessageBox.Show("Please enter the product type", "Add New Product", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtProductName.Text))
             {
-                MessageBox.Show("Please enter a product name");
+                MessageBox.Show("Please enter a product name", "Add New Product", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtYearlyPremium.Text))
             {
-                MessageBox.Show("Please enter the product's yearly premium");
+                MessageBox.Show("Please enter the product's yearly premium", "Add New Product", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (!int.TryParse(txtYearlyPremium.Text, out int parsedValue))
             {
-                MessageBox.Show("Yearly Premium must be a numerical value.");
+                MessageBox.Show("Yearly Premium must be a numerical value.", "Add New Product", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             return false;

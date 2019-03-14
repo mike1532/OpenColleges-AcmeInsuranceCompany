@@ -46,7 +46,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             if (lvProducts.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a product to update");
+                MessageBox.Show("Please select a product to update", "Update Product",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -60,21 +61,85 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TODO - code to delete selected Product
-
-            //message to show if category is able to be deleted
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this product?",
-                                            "Delete Product?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            //Prompts user to select a product if one has not been selected
+            if (lvProducts.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a product to delete", "Delete Product",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-            //add code to check to see if Product is being used in a sale. if being used tell user that it is
-            //unable to be deleted. Try/Catch block?
+            }
+
+            //Declares variables then checks if AllowDelete stored proc comes back true
+            int recordCount = 0;
+            GlobalVariable.selectedProductID = int.Parse(lvProducts.SelectedItems[0].SubItems[1].Text);
+            string allowDelete = "sp_Products_AllowDeleteProduct";
+
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            SqlCommand command = new SqlCommand(allowDelete, connection);
+
+            //Add values to stored proc
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@ProductID", GlobalVariable.selectedProductID);
+            SqlParameter returnValue = new SqlParameter("@RecordCount", SqlDbType.Int);
+            returnValue.Direction = ParameterDirection.Output;
+            command.Parameters.Add(returnValue);
+
+            //Opens DB. Executes stored proc. Assigns @RecordCount output to recordCount variable. Closes DB
+            connection.Open();
+            command.Transaction = connection.BeginTransaction();
+            command.ExecuteNonQuery();
+            recordCount = (int)command.Parameters["@RecordCount"].Value;
+            connection.Close();
+
+            //If category is being used, prompt user 
+            if (recordCount > 0)
+            {
+                MessageBox.Show("Product is unable to be deleted. Product data is being used.", "Delete Product",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            else
+            {
+                try
+                {
+                    //If category is unused. Ask for user to confirm deletion of product. Delclare variables. Set SP
+                    //Open DB -> Execute Stored Proc -> Commit -> Refresh listview
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
+                                                    "Delete Product?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.No)
+                        return;
+
+                    GlobalVariable.selectedProductID = int.Parse(lvProducts.SelectedItems[0].SubItems[1].Text);
+                    string deleteQuery = "sp_Products_DeleteProduct";
+                    SqlConnection connection1 = ConnectionManager.DatabaseConnection();
+                    SqlCommand command1 = new SqlCommand(deleteQuery, connection1);
+
+                    command1.CommandType = CommandType.StoredProcedure;
+                    command1.Parameters.AddWithValue("@ProductID", GlobalVariable.selectedProductID);
+
+                    connection1.Open();
+                    command1.Transaction = connection1.BeginTransaction();
+                    command1.ExecuteNonQuery();
+                    command1.Transaction.Commit();
+                    connection1.Close();
+
+                    lvProducts.Items.Clear();
+                    DisplayProducts();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unsucessful" + ex);
+                }
+            }              
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            GlobalVariable.productSearchCriteria = "";
             frmProductsSearch productsSearch = new frmProductsSearch();
-            productsSearch.ShowDialog();            
+            productsSearch.ShowDialog();
+            lvProducts.Items.Clear();
+            DisplayProducts();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -152,9 +217,10 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         public void DisplayProducts()
         {
             string selectQuery = "SELECT Products.ProductID, ProductTypes.ProductTypeID, Products.ProductName, Products.YearlyPremium " +
-                                 "FROM Products INNER JOIN ProductTypes ON Products.ProductTypeID = ProductTypes.ProductTypeID";
+                                 "FROM Products INNER JOIN ProductTypes ON Products.ProductTypeID = ProductTypes.ProductTypeID ";
 
-            //TODO ADD SEARCH CRITERIA STRING
+            //Search criteria
+            selectQuery = selectQuery + GlobalVariable.productSearchCriteria;
 
             SqlConnection connection = ConnectionManager.DatabaseConnection();
             SqlDataReader reader = null;

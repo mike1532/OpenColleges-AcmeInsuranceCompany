@@ -50,7 +50,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
              */
              if (lvCategories.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please choose a category to update");
+                MessageBox.Show("Please choose a category to update", "Update Category",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -67,10 +68,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //Prompts user to select category if one has not been selected
             if (lvCategories.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a category to delete");
+                MessageBox.Show("Please select a category to delete", "Delete Category",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
-            //declare variables then checks if AllowDelete stor proc comes back true.
+            //declare variables then checks if AllowDelete stored proc comes back true.
             int recordCount = 0;
             GlobalVariable.selectedCategoryID = int.Parse(lvCategories.SelectedItems[0].SubItems[1].Text);
             string allowDelete = "sp_Categories_AllowDeleteCategory";
@@ -95,7 +98,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //If category is being used, prompt user 
             if (recordCount > 0)
             {
-                MessageBox.Show("Category is unable to be deleted. Category is being used.");
+                MessageBox.Show("Category is unable to be deleted. Category data is being used.", "Delete Category",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             else
