@@ -30,7 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbProductDetails = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtYearlyPremium = new System.Windows.Forms.TextBox();
             this.lblYearlyPremium = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             // 
             // gbProductDetails
             // 
-            this.gbProductDetails.Controls.Add(this.textBox1);
+            this.gbProductDetails.Controls.Add(this.txtYearlyPremium);
             this.gbProductDetails.Controls.Add(this.lblYearlyPremium);
             this.gbProductDetails.Controls.Add(this.txtProductName);
             this.gbProductDetails.Controls.Add(this.lblProductName);
@@ -76,21 +76,21 @@
             this.gbProductDetails.TabStop = false;
             this.gbProductDetails.Text = "Product Details";
             // 
-            // textBox1
+            // txtYearlyPremium
             // 
-            this.textBox1.Location = new System.Drawing.Point(505, 117);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 26);
-            this.textBox1.TabIndex = 4;
+            this.txtYearlyPremium.Location = new System.Drawing.Point(505, 117);
+            this.txtYearlyPremium.Name = "txtYearlyPremium";
+            this.txtYearlyPremium.Size = new System.Drawing.Size(240, 26);
+            this.txtYearlyPremium.TabIndex = 4;
             // 
             // lblYearlyPremium
             // 
             this.lblYearlyPremium.AutoSize = true;
             this.lblYearlyPremium.Location = new System.Drawing.Point(359, 120);
             this.lblYearlyPremium.Name = "lblYearlyPremium";
-            this.lblYearlyPremium.Size = new System.Drawing.Size(146, 20);
+            this.lblYearlyPremium.Size = new System.Drawing.Size(122, 20);
             this.lblYearlyPremium.TabIndex = 7;
-            this.lblYearlyPremium.Text = "Yearly Premium:    $";
+            this.lblYearlyPremium.Text = "Yearly Premium:";
             // 
             // txtProductName
             // 
@@ -229,7 +229,7 @@
         private System.Windows.Forms.Label lblProductID;
         private System.Windows.Forms.TextBox txtProductID;
         private System.Windows.Forms.ComboBox cbProductType;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtYearlyPremium;
         private System.Windows.Forms.Label lblYearlyPremium;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblProductName;

@@ -56,7 +56,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             if(lvCustomers.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a customer to update");
+                MessageBox.Show("Please select a customer to update", "Update Customer",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -76,7 +77,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             */
             if(lvCustomers.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a customer to delete.");
+                MessageBox.Show("Please select a customer to delete.", "Delete Customer",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             

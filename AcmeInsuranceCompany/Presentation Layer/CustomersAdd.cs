@@ -214,17 +214,20 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             if(!DateInput.IsMatch(txtBirthDay.Text))
             {
-                MessageBox.Show("Please check your Date of Birth\nDay must be in a number format\nbetween 1 and 31 (dd)");
+                MessageBox.Show("Please check your Date of Birth\nDay must be in a number format\nbetween 1 and 31 (dd)",
+                    "Add New Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return true;
             }
             if(cbBirthMonth.Text == String.Empty)
             {
-                MessageBox.Show("Please check your Date of Birth\nNo month has been selected");
+                MessageBox.Show("Please check your Date of Birth\nNo month has been selected", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if(!YearInput.IsMatch(txtBirthYear.Text))
             {
-                MessageBox.Show("Please check your Date of Birth\nYear must be in number format (yyyy)");
+                MessageBox.Show("Please check your Date of Birth\nYear must be in number format (yyyy)", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             return false;
@@ -236,47 +239,56 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //Checks all info is entered. Then creates customer object to add to DB
             if (String.IsNullOrEmpty(txtFirstName.Text))
             {
-                MessageBox.Show("Please enter the customer's first name");
+                MessageBox.Show("Please enter the customer's first name", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtLastName.Text))
             {
-                MessageBox.Show("Please enter the customer's last name.");
+                MessageBox.Show("Please enter the customer's last name.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (rbMale.Checked == false && rbFemale.Checked == false)
             {
-                MessageBox.Show("Please select a gender.");
+                MessageBox.Show("Please select a gender.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(cbCategory.Text))
             {
-                MessageBox.Show("Please select a category.");
+                MessageBox.Show("Please select a category.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Please enter an address");
+                MessageBox.Show("Please enter an address", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtSuburb.Text))
             {
-                MessageBox.Show("Please enter a suburb.");
+                MessageBox.Show("Please enter a suburb.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(cbState.Text))
             {
-                MessageBox.Show("Please select a state.");
+                MessageBox.Show("Please select a state.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (String.IsNullOrEmpty(txtPostcode.Text))
             {
-                MessageBox.Show("Please enter a postcode.");
+                MessageBox.Show("Please enter a postcode.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             if (!int.TryParse(txtPostcode.Text, out int parsedValue))
             {
-                MessageBox.Show("Postcode must be a number.");
+                MessageBox.Show("Postcode must be a number.", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             return false;                      
