@@ -220,7 +220,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     Customer customer = new Customer(int.Parse(reader["CustomerID"].ToString()), reader["Category"].ToString(), reader["FirstName"].ToString(),
                                         reader["LastName"].ToString(), reader["Address"].ToString(), reader["Suburb"].ToString(),
                                         reader["State"].ToString(), int.Parse(reader["Postcode"].ToString()), gender,
-                                        reader["BirthDate"].ToString());
+                                        DateTime.Parse(reader["BirthDate"].ToString()));
 
                     //creates listview then adds items to lvCustomers
                     /*
@@ -239,8 +239,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     listView.SubItems.Add(customer.State);
                     listView.SubItems.Add(customer.Postcode.ToString());
                     listView.SubItems.Add(customer.Gender);
-                    DateTime bday = DateTime.Parse(customer.BirthDate);
-                    listView.SubItems.Add(bday.ToString("dd/MM/yyyy"));
+                    listView.SubItems.Add(customer.BirthDate.ToString("dd/MM/yyyy"));
 
                     lvCustomers.Items.Add(listView);
                 }

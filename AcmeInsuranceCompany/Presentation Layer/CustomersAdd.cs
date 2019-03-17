@@ -116,8 +116,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             Customer customer = new Customer(GlobalVariable.selectedCustomerID, lbCategory.Items[cbCategory.SelectedIndex].ToString(),
                                             txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtSuburb.Text, cbState.Text,
-                                            int.Parse(txtPostcode.Text), Gender(), txtBirthDay.Text + "/" + cbBirthMonth.Text +
-                                            "/" + txtBirthYear.Text);
+                                            int.Parse(txtPostcode.Text), Gender(), DateTime.Parse(txtBirthDay.Text + "/" + cbBirthMonth.Text +
+                                            "/" + txtBirthYear.Text));
 
             /*Calls create/udate customer stored procedure 
              * sets values into SP
@@ -149,8 +149,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             command.Parameters.AddWithValue("@State", customer.State);
             command.Parameters.AddWithValue("@Postcode", customer.Postcode);
             command.Parameters.AddWithValue("@Gender", customer.Gender);       
-            DateTime bday = DateTime.Parse(customer.BirthDate);
-            command.Parameters.AddWithValue("@BirthDate", bday.ToString("dd/MMMM/yyyy"));            
+            command.Parameters.AddWithValue("@BirthDate", customer.BirthDate.ToString("dd/MMMM/yyyy"));            
 
             if (GlobalVariable.selectedCustomerID == 0)
             {

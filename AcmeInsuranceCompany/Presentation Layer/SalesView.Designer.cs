@@ -115,7 +115,7 @@
             // 
             this.columnHeader6.Text = "Policy Start Date";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 253;
+            this.columnHeader6.Width = 235;
             // 
             // btnClose
             // 

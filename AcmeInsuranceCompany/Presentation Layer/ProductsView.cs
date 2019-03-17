@@ -217,7 +217,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         public void DisplayProducts()
         {
-            string selectQuery = "SELECT Products.ProductID, ProductTypes.ProductTypeID, Products.ProductName, Products.YearlyPremium " +
+            string selectQuery = "SELECT Products.ProductID, ProductTypes.ProductType, Products.ProductName, Products.YearlyPremium " +
                                  "FROM Products INNER JOIN ProductTypes ON Products.ProductTypeID = ProductTypes.ProductTypeID ";
 
             //Search criteria
@@ -243,7 +243,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
                 while (reader.Read())
                 {
-                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductTypeID"].ToString(),
+                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductType"].ToString(),
                                                   reader["ProductName"].ToString(), decimal.Parse(reader["YearlyPremium"].ToString()));
 
                     ListViewItem listView = new ListViewItem("");
