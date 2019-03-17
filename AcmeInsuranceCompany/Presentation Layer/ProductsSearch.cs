@@ -25,7 +25,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //buttons
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO - code to search products
+            //Ccode to search products
             if (rbListAll.Checked == true)
                 GlobalVariable.productSearchCriteria = "";
             if (rbCar.Checked == true)

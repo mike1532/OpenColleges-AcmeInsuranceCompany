@@ -146,6 +146,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Product Type";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProductTypesAdd_FormClosing);
+            this.Load += new System.EventHandler(this.frmProductTypesAdd_Load);
             this.gbProductTypeDetails.ResumeLayout(false);
             this.gbProductTypeDetails.PerformLayout();
             this.ResumeLayout(false);

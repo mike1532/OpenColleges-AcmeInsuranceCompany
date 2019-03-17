@@ -88,6 +88,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             connection.Open();
             command.Transaction = connection.BeginTransaction();
             command.ExecuteNonQuery();
+            command.Transaction.Commit();
             recordCount = (int)command.Parameters["@RecordCount"].Value;
             connection.Close();
 

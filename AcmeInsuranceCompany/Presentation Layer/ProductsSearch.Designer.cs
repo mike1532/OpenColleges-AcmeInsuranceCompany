@@ -42,7 +42,7 @@
             this.rbListAll.AutoSize = true;
             this.rbListAll.Checked = true;
             this.rbListAll.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbListAll.Location = new System.Drawing.Point(178, 167);
+            this.rbListAll.Location = new System.Drawing.Point(43, 50);
             this.rbListAll.Name = "rbListAll";
             this.rbListAll.Size = new System.Drawing.Size(131, 24);
             this.rbListAll.TabIndex = 15;
@@ -53,7 +53,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(278, 228);
+            this.btnCancel.Location = new System.Drawing.Point(251, 228);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(138, 40);
             this.btnCancel.TabIndex = 20;
@@ -64,7 +64,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(71, 228);
+            this.btnSearch.Location = new System.Drawing.Point(43, 228);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(138, 40);
             this.btnSearch.TabIndex = 19;
@@ -75,7 +75,7 @@
             // rbCar
             // 
             this.rbCar.AutoSize = true;
-            this.rbCar.Location = new System.Drawing.Point(41, 50);
+            this.rbCar.Location = new System.Drawing.Point(222, 101);
             this.rbCar.Name = "rbCar";
             this.rbCar.Size = new System.Drawing.Size(134, 24);
             this.rbCar.TabIndex = 21;
@@ -86,7 +86,7 @@
             // rbHouseContents
             // 
             this.rbHouseContents.AutoSize = true;
-            this.rbHouseContents.Location = new System.Drawing.Point(243, 50);
+            this.rbHouseContents.Location = new System.Drawing.Point(42, 152);
             this.rbHouseContents.Name = "rbHouseContents";
             this.rbHouseContents.Size = new System.Drawing.Size(253, 24);
             this.rbHouseContents.TabIndex = 22;
@@ -97,7 +97,7 @@
             // rbLife
             // 
             this.rbLife.AutoSize = true;
-            this.rbLife.Location = new System.Drawing.Point(41, 109);
+            this.rbLife.Location = new System.Drawing.Point(42, 101);
             this.rbLife.Name = "rbLife";
             this.rbLife.Size = new System.Drawing.Size(132, 24);
             this.rbLife.TabIndex = 23;
@@ -108,7 +108,7 @@
             // rbIncome
             // 
             this.rbIncome.AutoSize = true;
-            this.rbIncome.Location = new System.Drawing.Point(243, 109);
+            this.rbIncome.Location = new System.Drawing.Point(222, 50);
             this.rbIncome.Name = "rbIncome";
             this.rbIncome.Size = new System.Drawing.Size(167, 24);
             this.rbIncome.TabIndex = 24;
@@ -120,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 296);
+            this.ClientSize = new System.Drawing.Size(432, 296);
             this.Controls.Add(this.rbIncome);
             this.Controls.Add(this.rbLife);
             this.Controls.Add(this.rbHouseContents);

@@ -16,6 +16,9 @@ namespace AcmeInsuranceCompany
 
         public static int selectedProductID;
         public static string productSearchCriteria;
+
+        public static int selectedProductTypeID;
+        public static string productTypeSearchCriteria;
       
     }
 }
