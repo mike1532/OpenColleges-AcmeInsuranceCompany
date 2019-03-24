@@ -41,9 +41,11 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            GlobalVariable.selectedSaleID = 0;
             frmSalesAdd salesAdd = new frmSalesAdd();
             salesAdd.ShowDialog();
-            Hide();
+            lvSales.Items.Clear();
+            DisplaySales();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -148,7 +150,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         public void DisplaySales()
         {
             string selectQuery = "SELECT Sales.SaleID, CONCAT(Customers.FirstName, ' ', Customers.LastName) AS CustomerName, Products.ProductName, " +
-                                 "Sales.Payable, Sales.StartDate " +
+                                 "Products.YearlyPremium, Sales.Payable, Sales.StartDate " +
                                  "FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID " +
                                  "INNER JOIN Products ON Sales.ProductID = Products.ProductID";
 
@@ -179,10 +181,28 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     {
                         payable = "Yearly";
                     }
+                    
+                    //Calculates Premium payable based on either monthly, fortnightly or yearly payments
+                    decimal amount;
+                    const int MONTH = 12;
+                    const int FORTNIGHT = 26;
+                    
+                    if (reader["Payable"].ToString() == "F")
+                    {
+                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / FORTNIGHT;
+                    }
+                    else if (reader["Payable"].ToString() == "M")
+                    {
+                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / MONTH;
+                    }
+                    else
+                    {
+                        amount = decimal.Parse(reader["YearlyPremium"].ToString());
+                    }
 
                     //Call constructor
                     Sale sale = new Sale(int.Parse(reader["SaleID"].ToString()), reader["CustomerName"].ToString(),
-                        reader["ProductName"].ToString(), payable, DateTime.Parse(reader["StartDate"].ToString()));
+                        reader["ProductName"].ToString(), amount.ToString("0.00"), payable, DateTime.Parse(reader["StartDate"].ToString()));
 
                     //creates listview then adds items to lvCustomers
                     /*
@@ -194,8 +214,9 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     ListViewItem listView = new ListViewItem("");
                     listView.SubItems.Add(sale.SaleID.ToString());
                     listView.SubItems.Add(sale.CustomerName);
-                    listView.SubItems.Add(sale.ProductName);
-                    listView.SubItems.Add(sale.Payable);
+                    listView.SubItems.Add(sale.ProductName);                   
+                    listView.SubItems.Add(sale.TotalPremium);
+                    listView.SubItems.Add(sale.PremiumPaid);
                     listView.SubItems.Add(sale.StartDate.ToString("dd/MM/yyyy"));
 
                     lvSales.Items.Add(listView);

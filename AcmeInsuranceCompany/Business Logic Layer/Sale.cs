@@ -10,7 +10,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
     {
         //Declare properties and Get/Set
         private int saleID;
-        private string customerName, productName, payable; 
+        private string customerName, productName, totalPremium, premiumPaid; 
         private DateTime startDate;        
 
         public int SaleID
@@ -28,10 +28,15 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
             get { return productName; }
             set { productName = value; }
         }
-        public string Payable
+        public string TotalPremium
         {
-            get { return payable; }
-            set { payable = value; }
+            get { return totalPremium; }
+            set { totalPremium = value; }
+        }
+        public string PremiumPaid
+        {
+            get { return premiumPaid; }
+            set { premiumPaid = value; }
         }
         public DateTime StartDate
         {
@@ -42,12 +47,14 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
         //Default and parameterised constructor
         public Sale() { }
 
-        public Sale(int saleID, string customerName, string productName, string payable, DateTime startDate)
+        public Sale(int saleID, string customerName, string productName, string totalPremium, 
+            string premiumPaid, DateTime startDate)
         {
             SaleID = saleID;
             CustomerName = customerName;
             ProductName = productName;
-            Payable = payable;
+            TotalPremium = totalPremium;
+            PremiumPaid = premiumPaid;
             StartDate = startDate;
         }
     }

@@ -20,7 +20,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //load/close events
         private void frmSalesAdd_Load(object sender, EventArgs e)
         {
-            //TODO - Load event
+            //TODO - Load Customers/Products/premium paid into for,
         }
         private void frmSalesAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
