@@ -99,11 +99,11 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         }
 
         private void frmCustomersAdd_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        {            
             frmCustomersView customersView = new frmCustomersView();
             customersView.Show();
             Hide();
-        }
+        }               
 
         //button click events
         private void btnAdd_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                                             int.Parse(txtPostcode.Text), Gender(), DateTime.Parse(txtBirthDay.Text + "/" + cbBirthMonth.Text +
                                             "/" + txtBirthYear.Text));
 
-            /*Calls create/udate customer stored procedure 
+            /*Calls create/update customer stored procedure 
              * sets values into SP
              * commit to DB then close connection             
              */
@@ -162,7 +162,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             command.Transaction.Commit();
             connection.Close();
             Close();
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -208,7 +207,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
        private bool ConfirmDateOfBirthInput()
         {
-            Regex DateInput = new Regex(@"^[1-3[0-9]$");
+            Regex DateInput = new Regex(@"^([1-9]|[12][0-9]|3[01])$");
             Regex YearInput = new Regex(@"^[1-2][0-9]{3}$");
 
             if(!DateInput.IsMatch(txtBirthDay.Text))
@@ -309,11 +308,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //sets length of date of birth boxes
             txtBirthDay.MaxLength = 2;
             txtBirthYear.MaxLength = 4;
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
+        
     }
 }

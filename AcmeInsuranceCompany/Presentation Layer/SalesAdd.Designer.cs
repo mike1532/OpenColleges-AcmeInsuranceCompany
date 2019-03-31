@@ -38,7 +38,7 @@
             this.lblStartDate = new System.Windows.Forms.Label();
             this.lblPremiumPayable = new System.Windows.Forms.Label();
             this.gbOfficeUseOnly = new System.Windows.Forms.GroupBox();
-            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.txtSaleID = new System.Windows.Forms.TextBox();
             this.lblSaleID = new System.Windows.Forms.Label();
             this.gbSaleDetails = new System.Windows.Forms.GroupBox();
             this.lbProduct = new System.Windows.Forms.ListBox();
@@ -51,6 +51,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnNewCustomer = new System.Windows.Forms.Button();
             this.gbPolicyDetails.SuspendLayout();
             this.gbOfficeUseOnly.SuspendLayout();
             this.gbSaleDetails.SuspendLayout();
@@ -151,7 +152,7 @@
             // 
             // gbOfficeUseOnly
             // 
-            this.gbOfficeUseOnly.Controls.Add(this.txtCustomerID);
+            this.gbOfficeUseOnly.Controls.Add(this.txtSaleID);
             this.gbOfficeUseOnly.Controls.Add(this.lblSaleID);
             this.gbOfficeUseOnly.Location = new System.Drawing.Point(12, 137);
             this.gbOfficeUseOnly.Name = "gbOfficeUseOnly";
@@ -160,13 +161,13 @@
             this.gbOfficeUseOnly.TabStop = false;
             this.gbOfficeUseOnly.Text = "Office Use Only";
             // 
-            // txtCustomerID
+            // txtSaleID
             // 
-            this.txtCustomerID.Enabled = false;
-            this.txtCustomerID.Location = new System.Drawing.Point(144, 44);
-            this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(228, 26);
-            this.txtCustomerID.TabIndex = 1;
+            this.txtSaleID.Enabled = false;
+            this.txtSaleID.Location = new System.Drawing.Point(144, 44);
+            this.txtSaleID.Name = "txtSaleID";
+            this.txtSaleID.Size = new System.Drawing.Size(228, 26);
+            this.txtSaleID.TabIndex = 1;
             // 
             // lblSaleID
             // 
@@ -220,6 +221,7 @@
             this.cbProduct.Name = "cbProduct";
             this.cbProduct.Size = new System.Drawing.Size(228, 28);
             this.cbProduct.TabIndex = 2;
+            this.cbProduct.SelectedIndexChanged += new System.EventHandler(this.cbProduct_SelectedIndexChanged);
             // 
             // lblProduct
             // 
@@ -291,11 +293,23 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnNewCustomer
+            // 
+            this.btnNewCustomer.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewCustomer.Location = new System.Drawing.Point(813, 480);
+            this.btnNewCustomer.Name = "btnNewCustomer";
+            this.btnNewCustomer.Size = new System.Drawing.Size(151, 61);
+            this.btnNewCustomer.TabIndex = 7;
+            this.btnNewCustomer.Text = "click here to create a new customer";
+            this.btnNewCustomer.UseVisualStyleBackColor = true;
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
+            // 
             // frmSalesAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.btnNewCustomer);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnAdd);
@@ -327,7 +341,7 @@
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblPremiumPayable;
         private System.Windows.Forms.GroupBox gbOfficeUseOnly;
-        private System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.TextBox txtSaleID;
         private System.Windows.Forms.Label lblSaleID;
         private System.Windows.Forms.ComboBox cbPremiumPaid;
         private System.Windows.Forms.DateTimePicker dateTimePickerPremiumStartDate;
@@ -345,5 +359,6 @@
         private System.Windows.Forms.ListBox lbProduct;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbProduct;
+        private System.Windows.Forms.Button btnNewCustomer;
     }
 }

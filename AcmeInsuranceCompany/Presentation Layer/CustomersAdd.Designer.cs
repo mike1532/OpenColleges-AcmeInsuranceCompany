@@ -30,8 +30,8 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbCustomerDetails = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMonth = new System.Windows.Forms.Label();
+            this.lblYear = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.txtBirthYear = new System.Windows.Forms.TextBox();
             this.cbBirthMonth = new System.Windows.Forms.ComboBox();
@@ -80,8 +80,8 @@
             // 
             // gbCustomerDetails
             // 
-            this.gbCustomerDetails.Controls.Add(this.label2);
-            this.gbCustomerDetails.Controls.Add(this.label1);
+            this.gbCustomerDetails.Controls.Add(this.lblMonth);
+            this.gbCustomerDetails.Controls.Add(this.lblYear);
             this.gbCustomerDetails.Controls.Add(this.lblDay);
             this.gbCustomerDetails.Controls.Add(this.txtBirthYear);
             this.gbCustomerDetails.Controls.Add(this.cbBirthMonth);
@@ -104,28 +104,28 @@
             this.gbCustomerDetails.TabStop = false;
             this.gbCustomerDetails.Text = "Customer Details";
             // 
-            // label2
+            // lblMonth
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(259, 236);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 15);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "MONTH";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lblMonth.AutoSize = true;
+            this.lblMonth.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonth.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblMonth.Location = new System.Drawing.Point(259, 236);
+            this.lblMonth.Name = "lblMonth";
+            this.lblMonth.Size = new System.Drawing.Size(46, 15);
+            this.lblMonth.TabIndex = 12;
+            this.lblMonth.Text = "MONTH";
+            this.lblMonth.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label1
+            // lblYear
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(379, 235);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 15);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "YYYY";
+            this.lblYear.AutoSize = true;
+            this.lblYear.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblYear.Location = new System.Drawing.Point(379, 235);
+            this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(27, 15);
+            this.lblYear.TabIndex = 11;
+            this.lblYear.Text = "YYYY";
             // 
             // lblDay
             // 
@@ -490,8 +490,8 @@
         private System.Windows.Forms.TextBox txtBirthYear;
         private System.Windows.Forms.ComboBox cbBirthMonth;
         private System.Windows.Forms.TextBox txtBirthDay;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Label lblDay;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMonth;
     }
 }

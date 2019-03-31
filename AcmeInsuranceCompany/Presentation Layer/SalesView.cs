@@ -46,13 +46,29 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             salesAdd.ShowDialog();
             lvSales.Items.Clear();
             DisplaySales();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            /*
+            * Prompts user for selection if nothing has been selected. Assigns SaleID to 
+            * selectedSaleID variable. Loads edit screen with selected sale's information
+            */
+
+            if (lvSales.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a sale to update", "Update Sale Details",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            GlobalVariable.selectedSaleID = int.Parse(lvSales.SelectedItems[0].SubItems[1].Text);
             frmSalesAdd editForm = new frmSalesAdd();
             editForm.ChangeAddToEdit("Edit Sale Details", " Edit Sale Details", "Update");            
             editForm.ShowDialog();
+            lvSales.Items.Clear();
+            DisplaySales();
             Hide();
         }
 
@@ -75,11 +91,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             frmMainForm mainForm = new frmMainForm();
             mainForm.Show();
             Hide();
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
         }
 
         //menu options - needs to be linked up to the appropriate click event
@@ -152,9 +163,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             string selectQuery = "SELECT Sales.SaleID, CONCAT(Customers.FirstName, ' ', Customers.LastName) AS CustomerName, Products.ProductName, " +
                                  "Products.YearlyPremium, Sales.Payable, Sales.StartDate " +
                                  "FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID " +
-                                 "INNER JOIN Products ON Sales.ProductID = Products.ProductID";
-
-            
+                                 "INNER JOIN Products ON Sales.ProductID = Products.ProductID";            
             
             //SEARCH QUERY
 
@@ -184,25 +193,38 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     
                     //Calculates Premium payable based on either monthly, fortnightly or yearly payments
                     decimal amount;
-                    const int MONTH = 12;
-                    const int FORTNIGHT = 26;
-                    
+                    //const double MONTH = 12;
+                    //const int FORTNIGHT = 26;
+                   
+                    /*switch (reader["Payable"].ToString())
+                    {
+                        case "F":
+                            amount = decimal.Parse(reader["YearlyPremium"].ToString()) / FORTNIGHT;
+                            break;
+                        case "M":
+                            amount = decimal.Parse(reader["YearlyPremium"].ToString()) / MONTH;
+                            break;
+                        default:
+                            amount = decimal.Parse(reader["YearlyPremium"].ToString());
+                            break;
+                    }*/
                     if (reader["Payable"].ToString() == "F")
                     {
-                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / FORTNIGHT;
+                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / 26;
                     }
                     else if (reader["Payable"].ToString() == "M")
                     {
-                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / MONTH;
+                        amount = decimal.Parse(reader["YearlyPremium"].ToString()) / 12;
                     }
                     else
                     {
                         amount = decimal.Parse(reader["YearlyPremium"].ToString());
                     }
 
+
                     //Call constructor
                     Sale sale = new Sale(int.Parse(reader["SaleID"].ToString()), reader["CustomerName"].ToString(),
-                        reader["ProductName"].ToString(), amount.ToString("0.00"), payable, DateTime.Parse(reader["StartDate"].ToString()));
+                        reader["ProductName"].ToString(), amount.ToString("C"), payable, DateTime.Parse(reader["StartDate"].ToString()));
 
                     //creates listview then adds items to lvCustomers
                     /*

@@ -40,6 +40,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             productTypesAdd.ShowDialog();
             lvProductTypes.Items.Clear();
             DisplayProductTypes();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             editProductTypes.ShowDialog();
             lvProductTypes.Items.Clear();
             DisplayProductTypes();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

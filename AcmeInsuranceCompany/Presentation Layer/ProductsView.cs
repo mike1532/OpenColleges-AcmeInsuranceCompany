@@ -40,6 +40,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             productsAdd.ShowDialog();
             lvProducts.Items.Clear();
             DisplayProducts();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -57,6 +58,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             editForm.ShowDialog();
             lvProducts.Items.Clear();
             DisplayProducts();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -244,13 +246,16 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 while (reader.Read())
                 {
                     Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductType"].ToString(),
-                                                  reader["ProductName"].ToString(), decimal.Parse(reader["YearlyPremium"].ToString()));
+                                                  reader["ProductName"].ToString(), reader["YearlyPremium"].ToString());
 
                     ListViewItem listView = new ListViewItem("");
                     listView.SubItems.Add(product.ProductID.ToString());
                     listView.SubItems.Add(product.ProductType);
                     listView.SubItems.Add(product.ProductName);
-                    listView.SubItems.Add(product.YearlyPremium.ToString("00.00"));
+
+                    //Sets YearlyPremium to 2 decimal places
+                    decimal YP = decimal.Parse(reader["YearlyPremium"].ToString());
+                    listView.SubItems.Add(YP.ToString("C"));
 
                     lvProducts.Items.Add(listView);
                 }

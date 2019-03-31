@@ -45,6 +45,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             customersAdd.ShowDialog();
             lvCustomers.Items.Clear();
             DisplayCustomers();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -66,7 +67,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             editForm.ChangeAddToEdit("Edit Customer Details", " Edit Customer Details", "Update");            
             editForm.ShowDialog();
             lvCustomers.Items.Clear();
-            DisplayCustomers();            
+            DisplayCustomers();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -111,8 +113,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             frmCustomersSearch customersSearch = new frmCustomersSearch();
             customersSearch.ShowDialog();
             lvCustomers.Items.Clear();
-            DisplayCustomers();
-                            
+            DisplayCustomers();                            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

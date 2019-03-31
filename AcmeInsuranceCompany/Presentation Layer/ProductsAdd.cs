@@ -17,16 +17,18 @@ using System.Text.RegularExpressions;
 namespace AcmeInsuranceCompany.Presentation_Layer
 {
     public partial class frmProductsAdd : Form
-    {               
+    {
         public frmProductsAdd()
         {
             InitializeComponent();
-            
         }
+
+        //RegEx to check that a number has been entered
+        Regex YearlyPremium = new Regex(@"^[0-9]*$");
 
         //events
         private void frmProductsAdd_Load(object sender, EventArgs e)
-        {  
+        {
             //Preloads Product Types into form. Opens DB. Loads into Form. Closes DB
             string selectQuery = "SELECT * FROM ProductTypes";
             SqlConnection connection = ConnectionManager.DatabaseConnection();
@@ -76,7 +78,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     decimal.TryParse(yearlyPremium, out decimal output);
                     txtYearlyPremium.Text = output.ToString("C");
 
-                    
+
                     reader1.Close();
                     connection1.Close();
                 }
@@ -107,8 +109,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             if (CheckInput() == true)
                 return;
 
-            Product product = new Product(GlobalVariable.selectedProductID, lbProductType.Items[cbProductType.SelectedIndex].ToString(), 
-                                          txtProductName.Text, decimal.Parse(txtYearlyPremium.Text));
+            Product product = new Product(GlobalVariable.selectedProductID, lbProductType.Items[cbProductType.SelectedIndex].ToString(),
+                                          txtProductName.Text, txtYearlyPremium.Text);
 
             string addQuery;
 
@@ -129,7 +131,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                 command1.Parameters.AddWithValue("@ProductID", product.ProductID);
             command1.Parameters.AddWithValue("@ProductTypeID", product.ProductType);
             command1.Parameters.AddWithValue("@ProductName", product.ProductName);
-            command1.Parameters.AddWithValue("@YearlyPremium", product.YearlyPremium.ToString("0.00"));
+            command1.Parameters.AddWithValue("@YearlyPremium", product.YearlyPremium);
 
             if (GlobalVariable.selectedProductID == 0)
             {
@@ -146,6 +148,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            //txtYearlyPremium.Leave -= txtYearlyPremium_Leave; 
             Close();
         }
 
@@ -189,21 +192,28 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtYearlyPremium.Text))
             {
-                MessageBox.Show("Please enter the product's yearly premium", "Add New Product", MessageBoxButtons.OK,
+                MessageBox.Show("Please enter the yearly premium", "Edit Sale Details", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
-            if (!int.TryParse(txtYearlyPremium.Text, out int parsedValue))
+            else if (!YearlyPremium.IsMatch(txtYearlyPremium.Text))
             {
-                MessageBox.Show("Yearly Premium must be a numerical value.", "Add New Product", MessageBoxButtons.OK,
+                MessageBox.Show("Yearly Premium must be a numerical value.", "Edit Sale Details", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
-            return false;
-        }
+            else
+            {
+                double YP = double.Parse(txtYearlyPremium.Text, NumberStyles.Currency);
+                txtYearlyPremium.Text = YP.ToString();
+                return false;
+            }
 
-       
+        }
     }
 }
+
+

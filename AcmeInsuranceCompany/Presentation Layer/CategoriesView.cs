@@ -40,6 +40,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             categoriesAdd.ShowDialog();
             lvCategories.Items.Clear();
             DisplayCategories();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -61,6 +62,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             editForm.ShowDialog();
             lvCategories.Items.Clear();
             DisplayCategories();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
