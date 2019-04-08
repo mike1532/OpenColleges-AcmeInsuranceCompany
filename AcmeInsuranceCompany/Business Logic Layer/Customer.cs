@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +19,10 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
     class Customer
     {
         //declare customer properties
-        private string firstName, lastName, address, suburb, state, gender, category, birthDate;
+        private string firstName, lastName, address, suburb, state, gender, category;
         private int customerID, postcode;
-        
+        private DateTime birthDate;
+
 
         //get-set properties
         public int CustomerID
@@ -60,7 +70,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
             get { return gender; }
             set { gender = value; }
         }
-        public string BirthDate
+        public DateTime BirthDate
         {
             get { return birthDate; }
             set { birthDate = value; }
@@ -71,7 +81,7 @@ namespace AcmeInsuranceCompany.Business_Logic_Layer
 
         //parameterised constructor
         public Customer(int customerID, string category, string firstName, string lastName, string address, string suburb,
-                        string state, int postcode, string gender, string birthDate)
+                        string state, int postcode, string gender, DateTime birthDate)
         {
             CustomerID = customerID;
             Category = category;

@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,14 +46,29 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             Application.Exit();
         }
 
-        //TODO Click events for buttons       
+        //Click events for buttons       
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            /*By not defining a FormClosing event on CustomersAdd.cs, I can add an individual closing event per form 
+             * object that is created. Allows for flexibility when creating forms ie Can call the add customer form from the
+             * add sale form and not have to worry about the form closing event running everytime (This would close form and
+             * launch the view customers form)
+             */
             GlobalVariable.selectedCustomerID = 0;
-            frmCustomersAdd customersAdd = new frmCustomersAdd();
+
+            frmCustomersAdd customersAdd = new frmCustomersAdd();            
+            customersAdd.FormClosing += new FormClosingEventHandler(frmCustomersAdd_FormClosing);
             customersAdd.ShowDialog();
+            void frmCustomersAdd_FormClosing(object bender, FormClosingEventArgs formClosingEvent)
+            {
+                frmCustomersView customersView = new frmCustomersView();
+                customersView.Show();
+                Hide();
+            }
+
             lvCustomers.Items.Clear();
             DisplayCustomers();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -62,47 +86,90 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             }
 
             GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
+
             frmCustomersAdd editForm = new frmCustomersAdd();
+            editForm.FormClosing += new FormClosingEventHandler(frmCustomersAdd_FormClosing);
             editForm.ChangeAddToEdit("Edit Customer Details", " Edit Customer Details", "Update");            
             editForm.ShowDialog();
+            void frmCustomersAdd_FormClosing(object bender, FormClosingEventArgs formClosingEvent)
+            {
+                frmCustomersView customersView = new frmCustomersView();
+                customersView.Show();
+                Hide();
+            }
+
             lvCustomers.Items.Clear();
-            DisplayCustomers();            
+            DisplayCustomers();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            /*
-             * Checks that user has selected a customer to delete. Confirms that the user wants to continue
-             * with the deletion. Connects to DB, runs Stored Proc, Displays updated list.
-            */
+                /*
+                 * Checks that user has selected a customer to delete. Confirms that the user wants to continue
+                 * with the deletion. Connects to DB, runs Stored Proc, Displays updated list.
+                */
             if(lvCustomers.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select a customer to delete.", "Delete Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
-                                            "Delete Customer Record?", MessageBoxButtons.YesNo);
-            if(dialogResult == DialogResult.No)
-                return;
-
+                      
+            //Declares variables then checks if AllowDelete stored proc comes back true
+            int recordCount = 0;
             GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
-            string deleteQuery = "sp_Customers_DeleteCustomer";
-            SqlConnection connection = ConnectionManager.DatabaseConnection();            
-            SqlCommand command = new SqlCommand(deleteQuery, connection);
+            string allowDelete = "sp_Customers_AllowDeleteCustomer";
 
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            SqlCommand command = new SqlCommand(allowDelete, connection);
+
+            //Add values to Stored Proc
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@CustomerID", GlobalVariable.selectedCustomerID);
+            SqlParameter returnValue = new SqlParameter("@RecordCount", SqlDbType.Int);
+            returnValue.Direction = ParameterDirection.Output;
+            command.Parameters.Add(returnValue);
 
+            //Opens DB, Executes stored proc. Assigns @RecordCount output to recordCount variable. Closes DB
             connection.Open();
             command.Transaction = connection.BeginTransaction();
             command.ExecuteNonQuery();
             command.Transaction.Commit();
+            recordCount = (int)command.Parameters["@RecordCount"].Value;
             connection.Close();
 
-            lvCustomers.Items.Clear();
-            DisplayCustomers();
+            if (recordCount > 0)
+            {
+                MessageBox.Show("Customer is unable to be deleted. Customer data is being used.", "Delete Customer",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //If customer is unused. Ask for user to confirm deletion of product. Delclare variables. Set SP
+                //Open DB -> Execute Stored Proc -> Commit -> Refresh listview
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
+                                                "Delete Product?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                    return;
+
+                GlobalVariable.selectedCustomerID = int.Parse(lvCustomers.SelectedItems[0].SubItems[1].Text);
+                string deleteQuery = "sp_Customers_DeleteCustomer";
+                SqlConnection connection1 = ConnectionManager.DatabaseConnection();                               
+                SqlCommand command1 = new SqlCommand(deleteQuery, connection1);
+
+                command1.CommandType = CommandType.StoredProcedure;
+                command1.Parameters.AddWithValue("@CustomerID", GlobalVariable.selectedCustomerID);
+
+                connection1.Open();
+                command1.Transaction = connection1.BeginTransaction();
+                command1.ExecuteNonQuery();
+                command1.Transaction.Commit();
+                connection1.Close();
+
+                lvCustomers.Items.Clear();
+                DisplayCustomers();
+            }            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -111,8 +178,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             frmCustomersSearch customersSearch = new frmCustomersSearch();
             customersSearch.ShowDialog();
             lvCustomers.Items.Clear();
-            DisplayCustomers();
-                            
+            DisplayCustomers();                            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -220,7 +286,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     Customer customer = new Customer(int.Parse(reader["CustomerID"].ToString()), reader["Category"].ToString(), reader["FirstName"].ToString(),
                                         reader["LastName"].ToString(), reader["Address"].ToString(), reader["Suburb"].ToString(),
                                         reader["State"].ToString(), int.Parse(reader["Postcode"].ToString()), gender,
-                                        reader["BirthDate"].ToString());
+                                        DateTime.Parse(reader["BirthDate"].ToString()));
 
                     //creates listview then adds items to lvCustomers
                     /*
@@ -239,8 +305,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     listView.SubItems.Add(customer.State);
                     listView.SubItems.Add(customer.Postcode.ToString());
                     listView.SubItems.Add(customer.Gender);
-                    DateTime bday = DateTime.Parse(customer.BirthDate);
-                    listView.SubItems.Add(bday.ToString("dd/MM/yyyy"));
+                    listView.SubItems.Add(customer.BirthDate.ToString("dd/MM/yyyy"));
 
                     lvCustomers.Items.Add(listView);
                 }

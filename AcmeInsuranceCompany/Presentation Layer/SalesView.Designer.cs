@@ -34,6 +34,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Company Sale Details";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // lvSales
             // 
@@ -73,6 +73,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
+            this.columnHeader7,
             this.columnHeader5,
             this.columnHeader6});
             this.lvSales.FullRowSelect = true;
@@ -91,31 +92,37 @@
             // 
             this.columnHeader2.Text = "Sale ID";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 70;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Customer";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 220;
+            this.columnHeader3.Width = 230;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Product";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 231;
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Premium Payable";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader7.Width = 150;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Premium Paid";
+            this.columnHeader5.Text = "Paid";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 100;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Policy Start Date";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 253;
+            this.columnHeader6.Width = 200;
             // 
             // btnClose
             // 
@@ -316,5 +323,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tutorialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

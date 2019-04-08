@@ -194,7 +194,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Yearly Premium ($AUD)";
+            this.columnHeader5.Text = "Yearly Premium";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 263;
             // 

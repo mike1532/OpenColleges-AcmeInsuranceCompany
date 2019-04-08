@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +32,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             InitializeComponent();
         }    
         
-        //load/close events        
+        //Load event - close event is added upon instantiation of form object in CustomersView.cs   
         private void frmCustomersAdd_Load(object sender, EventArgs e)
         {
             SetLengthDOB();
@@ -59,13 +68,12 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             {
                 selectQuery = "SELECT * FROM Customers WHERE CustomerID = " + GlobalVariable.selectedCustomerID.ToString();
                 SqlConnection connection1 = ConnectionManager.DatabaseConnection();
-                SqlDataReader reader1 = null;
-
+                
                 try
                 {
                     connection1.Open();
                     SqlCommand command1 = new SqlCommand(selectQuery, connection1);
-                    reader1 = command1.ExecuteReader();
+                    SqlDataReader reader1 = command1.ExecuteReader();
                     reader1.Read();
 
                     txtCustomerID.Text = reader1["CustomerID"].ToString();
@@ -96,14 +104,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBox.Show("Unsucessful " + ex);                    
                 }
             }          
-        }
-
-        private void frmCustomersAdd_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmCustomersView customersView = new frmCustomersView();
-            customersView.Show();
-            Hide();
-        }
+        }        
 
         //button click events
         private void btnAdd_Click(object sender, EventArgs e)
@@ -111,15 +112,13 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //validates input data, if data is valid -> create customer object
             if (ConfirmInput() == true)
                 return;
-            if (ConfirmDateOfBirthInput() == true)
-                return;
-
+           
             Customer customer = new Customer(GlobalVariable.selectedCustomerID, lbCategory.Items[cbCategory.SelectedIndex].ToString(),
                                             txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtSuburb.Text, cbState.Text,
-                                            int.Parse(txtPostcode.Text), Gender(), txtBirthDay.Text + "/" + cbBirthMonth.Text +
-                                            "/" + txtBirthYear.Text);
+                                            int.Parse(txtPostcode.Text), Gender(), DateTime.Parse(txtBirthDay.Text + "/" + cbBirthMonth.Text +
+                                            "/" + txtBirthYear.Text));
 
-            /*Calls create/udate customer stored procedure 
+            /*Calls create/update customer stored procedure 
              * sets values into SP
              * commit to DB then close connection             
              */
@@ -149,8 +148,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             command.Parameters.AddWithValue("@State", customer.State);
             command.Parameters.AddWithValue("@Postcode", customer.Postcode);
             command.Parameters.AddWithValue("@Gender", customer.Gender);       
-            DateTime bday = DateTime.Parse(customer.BirthDate);
-            command.Parameters.AddWithValue("@BirthDate", bday.ToString("dd/MMMM/yyyy"));            
+            command.Parameters.AddWithValue("@BirthDate", customer.BirthDate.ToString("dd/MMMM/yyyy"));            
 
             if (GlobalVariable.selectedCustomerID == 0)
             {
@@ -163,7 +161,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             command.Transaction.Commit();
             connection.Close();
             Close();
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -173,7 +170,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Close();
+            Close();        
         }
 
         /*-----------------------------------------------------------------------------------------*/
@@ -206,36 +203,14 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             cbBirthMonth.SelectedIndex = -1;
             txtBirthYear.Clear();
         }
-
-       private bool ConfirmDateOfBirthInput()
-        {
-            Regex DateInput = new Regex(@"^[1-3[0-9]$");
-            Regex YearInput = new Regex(@"^[1-2][0-9]{3}$");
-
-            if(!DateInput.IsMatch(txtBirthDay.Text))
-            {
-                MessageBox.Show("Please check your Date of Birth\nDay must be in a number format\nbetween 1 and 31 (dd)",
-                    "Add New Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return true;
-            }
-            if(cbBirthMonth.Text == String.Empty)
-            {
-                MessageBox.Show("Please check your Date of Birth\nNo month has been selected", "Add New Customer", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return true;
-            }
-            if(!YearInput.IsMatch(txtBirthYear.Text))
-            {
-                MessageBox.Show("Please check your Date of Birth\nYear must be in number format (yyyy)", "Add New Customer", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return true;
-            }
-            return false;
-        }
-
+            
+        //Confirms input
         private bool ConfirmInput()
         {
-            
+            //Regex for checking DOB
+            Regex DateInput = new Regex(@"^([1-9]|[12][0-9]|3[01])$");
+            Regex YearInput = new Regex(@"^[1-2][0-9]{3}$");
+
             //Checks all info is entered. Then creates customer object to add to DB
             if (String.IsNullOrEmpty(txtFirstName.Text))
             {
@@ -243,42 +218,68 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtLastName.Text))
             {
                 MessageBox.Show("Please enter the customer's last name.", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (rbMale.Checked == false && rbFemale.Checked == false)
             {
                 MessageBox.Show("Please select a gender.", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
+            if (!DateInput.IsMatch(txtBirthDay.Text))
+            {
+                MessageBox.Show("Please check your Date of Birth\nDay must be in a number format\nbetween 1 and 31 (dd)",
+                    "Add New Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            if (cbBirthMonth.Text == String.Empty)
+            {
+                MessageBox.Show("Please check your Date of Birth\nNo month has been selected", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return true;
+            }
+            if (!YearInput.IsMatch(txtBirthYear.Text))
+            {
+                MessageBox.Show("Please check your Date of Birth\nYear must be in number format (yyyy)", "Add New Customer", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return true;
+            }
+
             if (String.IsNullOrEmpty(cbCategory.Text))
             {
                 MessageBox.Show("Please select a category.", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtAddress.Text))
             {
                 MessageBox.Show("Please enter an address", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtSuburb.Text))
             {
                 MessageBox.Show("Please enter a suburb.", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(cbState.Text))
             {
                 MessageBox.Show("Please select a state.", "Add New Customer", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtPostcode.Text))
             {
                 MessageBox.Show("Please enter a postcode.", "Add New Customer", MessageBoxButtons.OK,
@@ -291,6 +292,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBoxIcon.Error);
                 return true;
             }
+
             return false;                      
         }
 
@@ -310,11 +312,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //sets length of date of birth boxes
             txtBirthDay.MaxLength = 2;
             txtBirthYear.MaxLength = 4;
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
+        
     }
 }

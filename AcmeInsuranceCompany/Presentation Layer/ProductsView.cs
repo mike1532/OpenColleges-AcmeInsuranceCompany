@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,11 +44,26 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //button events
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            /*By not defining a FormClosing event on ProductssAdd.cs, I can add an individual closing event per form 
+             * object that is created. Allows for flexibility when creating forms ie Can call the add product form from the
+             * add sale form and not have to worry about the form closing event running everytime (This would close form and
+             * launch the view products form)
+             */
             GlobalVariable.selectedProductID = 0;
+
             frmProductsAdd productsAdd = new frmProductsAdd();
+            productsAdd.FormClosing += new FormClosingEventHandler(frmProductsAdd_FormClosing);
             productsAdd.ShowDialog();
+            void frmProductsAdd_FormClosing(object bender, FormClosingEventArgs i)
+            {
+                frmProductsView productsView = new frmProductsView();
+                productsView.Show();
+                Hide();
+            }
+
             lvProducts.Items.Clear();
             DisplayProducts();
+            Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -53,10 +77,20 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             GlobalVariable.selectedProductID = int.Parse(lvProducts.SelectedItems[0].SubItems[1].Text);
             frmProductsAdd editForm = new frmProductsAdd();
+            editForm.FormClosing += new FormClosingEventHandler(frmProductsAdd_FormClosing);
             editForm.ChangeAddToEdit("Edit Product Details", " Edit Product Details", "Update");
             editForm.ShowDialog();
+
+            void frmProductsAdd_FormClosing(object bender, FormClosingEventArgs i)
+            {
+                frmProductsView productsView = new frmProductsView();
+                productsView.Show();
+                Hide();
+            }
+
             lvProducts.Items.Clear();
             DisplayProducts();
+            Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -217,7 +251,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         public void DisplayProducts()
         {
-            string selectQuery = "SELECT Products.ProductID, ProductTypes.ProductTypeID, Products.ProductName, Products.YearlyPremium " +
+            string selectQuery = "SELECT Products.ProductID, ProductTypes.ProductType, Products.ProductName, Products.YearlyPremium " +
                                  "FROM Products INNER JOIN ProductTypes ON Products.ProductTypeID = ProductTypes.ProductTypeID ";
 
             //Search criteria
@@ -243,14 +277,17 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
                 while (reader.Read())
                 {
-                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductTypeID"].ToString(),
-                                                  reader["ProductName"].ToString(), decimal.Parse(reader["YearlyPremium"].ToString()));
+                    Product product = new Product(int.Parse(reader["ProductID"].ToString()), reader["ProductType"].ToString(),
+                                                  reader["ProductName"].ToString(), reader["YearlyPremium"].ToString());
 
                     ListViewItem listView = new ListViewItem("");
                     listView.SubItems.Add(product.ProductID.ToString());
                     listView.SubItems.Add(product.ProductType);
                     listView.SubItems.Add(product.ProductName);
-                    listView.SubItems.Add(product.YearlyPremium.ToString("00.00"));
+
+                    //Sets YearlyPremium to 2 decimal places
+                    decimal YP = decimal.Parse(reader["YearlyPremium"].ToString());
+                    listView.SubItems.Add(YP.ToString("C"));
 
                     lvProducts.Items.Add(listView);
                 }
