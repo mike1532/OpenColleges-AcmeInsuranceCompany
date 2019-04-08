@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,11 +36,13 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             txtSearch.Visible = false;
             cbCategory.Visible = false;
         }
+
         private void rbLastName_CheckedChanged(object sender, EventArgs e)
         {
             txtSearch.Visible = true;
             cbCategory.Visible = false;
         }
+
         private void rbCategory_CheckedChanged(object sender, EventArgs e)
         {
             txtSearch.Visible = false;
@@ -40,6 +51,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             cbCategory.Top = txtSearch.Top;
             cbCategory.Left = txtSearch.Left;
         }
+
         private void rbPostcode_CheckedChanged(object sender, EventArgs e)
         {
             txtSearch.Visible = true;
@@ -81,7 +93,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         //buttons
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO - code to search databse
+            //Code to search databse
             if (rbListAll.Checked == true)
                 GlobalVariable.customerSearchCriteria = "";
             if(rbLastName.Checked == true)

@@ -210,7 +210,6 @@
             this.Name = "frmProductsAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Product";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProductsAdd_FormClosing);
             this.Load += new System.EventHandler(this.frmProductsAdd_Load);
             this.gbProductDetails.ResumeLayout(false);
             this.gbProductDetails.PerformLayout();

@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,16 +83,47 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            /*
+              * Checks that user has selected a sale to delete. Confirms that the user wants to continue
+              * with the deletion. Connects to DB, runs Stored Proc, Displays updated list.
+             */
+             if (lvSales.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a sale to delete.", "Delete Sale",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this record?",
                                            "Delete Sale Record?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
                 return;
+
+            GlobalVariable.selectedSaleID = int.Parse(lvSales.SelectedItems[0].SubItems[1].Text);
+            string deleteQuery = "sp_Sales_DeleteSale";
+            SqlConnection connection = ConnectionManager.DatabaseConnection();
+            SqlCommand command = new SqlCommand(deleteQuery, connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@SaleID", GlobalVariable.selectedSaleID);
+
+            connection.Open();
+            command.Transaction = connection.BeginTransaction();
+            command.ExecuteNonQuery();
+            command.Transaction.Commit();
+            connection.Close();
+
+            lvSales.Items.Clear();
+            DisplaySales();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            GlobalVariable.saleSearchCriteria = "";
             frmSalesSearch salesSearch = new frmSalesSearch();
-            salesSearch.ShowDialog();            
+            salesSearch.ShowDialog();
+            lvSales.Items.Clear();
+            DisplaySales();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -163,9 +203,10 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             string selectQuery = "SELECT Sales.SaleID, CONCAT(Customers.FirstName, ' ', Customers.LastName) AS CustomerName, Products.ProductName, " +
                                  "Products.YearlyPremium, Sales.Payable, Sales.StartDate " +
                                  "FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID " +
-                                 "INNER JOIN Products ON Sales.ProductID = Products.ProductID";            
-            
+                                 "INNER JOIN Products ON Sales.ProductID = Products.ProductID";
+
             //SEARCH QUERY
+            selectQuery = selectQuery + " " + GlobalVariable.saleSearchCriteria;
 
             SqlConnection connection = ConnectionManager.DatabaseConnection();
             SqlDataReader reader = null;

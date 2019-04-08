@@ -52,6 +52,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnNewCustomer = new System.Windows.Forms.Button();
+            this.btnNewProduct = new System.Windows.Forms.Button();
             this.gbPolicyDetails.SuspendLayout();
             this.gbOfficeUseOnly.SuspendLayout();
             this.gbSaleDetails.SuspendLayout();
@@ -296,7 +297,7 @@
             // btnNewCustomer
             // 
             this.btnNewCustomer.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewCustomer.Location = new System.Drawing.Point(813, 480);
+            this.btnNewCustomer.Location = new System.Drawing.Point(819, 459);
             this.btnNewCustomer.Name = "btnNewCustomer";
             this.btnNewCustomer.Size = new System.Drawing.Size(151, 61);
             this.btnNewCustomer.TabIndex = 7;
@@ -304,11 +305,23 @@
             this.btnNewCustomer.UseVisualStyleBackColor = true;
             this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
             // 
+            // btnNewProduct
+            // 
+            this.btnNewProduct.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewProduct.Location = new System.Drawing.Point(648, 459);
+            this.btnNewProduct.Name = "btnNewProduct";
+            this.btnNewProduct.Size = new System.Drawing.Size(151, 61);
+            this.btnNewProduct.TabIndex = 8;
+            this.btnNewProduct.Text = "click here to create a new product";
+            this.btnNewProduct.UseVisualStyleBackColor = true;
+            this.btnNewProduct.Click += new System.EventHandler(this.btnNewProduct_Click);
+            // 
             // frmSalesAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.btnNewProduct);
             this.Controls.Add(this.btnNewCustomer);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnClear);
@@ -360,5 +373,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbProduct;
         private System.Windows.Forms.Button btnNewCustomer;
+        private System.Windows.Forms.Button btnNewProduct;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbCategory = new System.Windows.Forms.ListBox();
+            this.lbProduct = new System.Windows.Forms.ListBox();
             this.cbProduct = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.rbLastName = new System.Windows.Forms.RadioButton();
@@ -38,16 +38,16 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbCategory
+            // lbProduct
             // 
-            this.lbCategory.FormattingEnabled = true;
-            this.lbCategory.ItemHeight = 20;
-            this.lbCategory.Location = new System.Drawing.Point(570, 111);
-            this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(20, 24);
-            this.lbCategory.TabIndex = 14;
-            this.lbCategory.TabStop = false;
-            this.lbCategory.Visible = false;
+            this.lbProduct.FormattingEnabled = true;
+            this.lbProduct.ItemHeight = 20;
+            this.lbProduct.Location = new System.Drawing.Point(570, 111);
+            this.lbProduct.Name = "lbProduct";
+            this.lbProduct.Size = new System.Drawing.Size(20, 24);
+            this.lbProduct.TabIndex = 14;
+            this.lbProduct.TabStop = false;
+            this.lbProduct.Visible = false;
             // 
             // cbProduct
             // 
@@ -129,7 +129,7 @@
             this.ClientSize = new System.Drawing.Size(602, 378);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.lbCategory);
+            this.Controls.Add(this.lbProduct);
             this.Controls.Add(this.cbProduct);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.rbLastName);
@@ -148,7 +148,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbCategory;
+        private System.Windows.Forms.ListBox lbProduct;
         private System.Windows.Forms.ComboBox cbProduct;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.RadioButton rbLastName;

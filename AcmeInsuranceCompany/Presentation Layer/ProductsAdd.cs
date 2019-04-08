@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Open Colleges - Module 9 Part B Assessment - Database Program for Acme Insurance Company
+ * Author - Mike Ormond
+ * 
+ * The following source code can be used as a learning tool. Please do not submit as your own work.
+ * 
+ * ©2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +31,8 @@ namespace AcmeInsuranceCompany.Presentation_Layer
         {
             InitializeComponent();
         }
-
-        //RegEx to check that a number has been entered
-        Regex YearlyPremium = new Regex(@"^[0-9]*$");
-
-        //events
+        
+        //Load event - close event is added upon instantiation of form object in ProductsView.cs
         private void frmProductsAdd_Load(object sender, EventArgs e)
         {
             //Preloads Product Types into form. Opens DB. Loads into Form. Closes DB
@@ -57,21 +63,29 @@ namespace AcmeInsuranceCompany.Presentation_Layer
             //Loads selected product into edit form
             if (GlobalVariable.selectedProductID > 0)
             {
-
-                selectQuery = "SELECT * FROM Products WHERE ProductID = " + GlobalVariable.selectedProductID.ToString();
-                SqlConnection connection1 = ConnectionManager.DatabaseConnection();
-                SqlDataReader reader1 = null;
+                //change the select query
+                selectQuery = "SELECT Products.ProductID, ProductTypes.ProductType, Products.ProductName, Products.YearlyPremium " +
+                              "FROM Products INNER JOIN ProductTypes " +
+                              "ON Products.ProductTypeID = ProductTypes.ProductTypeID " +
+                              "WHERE ProductID = " + GlobalVariable.selectedProductID.ToString();
+                SqlConnection connection1 = ConnectionManager.DatabaseConnection();                
 
                 try
                 {
                     connection1.Open();
                     SqlCommand command1 = new SqlCommand(selectQuery, connection1);
-                    reader1 = command1.ExecuteReader();
+                    SqlDataReader reader1 = command1.ExecuteReader();
+
                     reader1.Read();
 
                     txtProductID.Text = reader1["ProductID"].ToString();
                     txtProductName.Text = reader1["ProductName"].ToString();
-                    cbProductType.SelectedIndex = int.Parse(reader1["ProductTypeID"].ToString()) - 1;
+
+                    //Takes the product type, finds the index of the product type in the combo box list and then sets 
+                    //to selected index of combo box.
+                    string product = reader1["ProductType"].ToString();
+                    int productIndex = cbProductType.Items.IndexOf(product);
+                    cbProductType.SelectedIndex = productIndex;
 
                     //Makes input into txtYearlyPremium a currency value ($00.00)
                     string yearlyPremium = reader1["YearlyPremium"].ToString();
@@ -87,14 +101,7 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBox.Show("Unsuccessful " + ex);
                 }
             }
-        }
-
-        private void frmProductsAdd_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            frmProductsView productsView = new frmProductsView();
-            productsView.Show();
-            Hide();
-        }
+        }       
 
         //button events
         private void btnClear_Click(object sender, EventArgs e)
@@ -148,7 +155,6 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            //txtYearlyPremium.Leave -= txtYearlyPremium_Leave; 
             Close();
         }
 
@@ -180,12 +186,14 @@ namespace AcmeInsuranceCompany.Presentation_Layer
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(cbProductType.Text))
             {
                 MessageBox.Show("Please enter the product type", "Add New Product", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
+
             if (String.IsNullOrEmpty(txtProductName.Text))
             {
                 MessageBox.Show("Please enter a product name", "Add New Product", MessageBoxButtons.OK,
@@ -195,23 +203,22 @@ namespace AcmeInsuranceCompany.Presentation_Layer
 
             if (String.IsNullOrEmpty(txtYearlyPremium.Text))
             {
-                MessageBox.Show("Please enter the yearly premium", "Edit Sale Details", MessageBoxButtons.OK,
+                MessageBox.Show("Please enter the product's yearly premium", "Add New Product", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return true;
             }
-            else if (!YearlyPremium.IsMatch(txtYearlyPremium.Text))
+            else if (!double.TryParse(txtYearlyPremium.Text, NumberStyles.Currency, null, out double value))
             {
-                MessageBox.Show("Yearly Premium must be a numerical value.", "Edit Sale Details", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Yearly Premium must be a numerical value.", "Add New Product", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
                 return true;
             }
             else
             {
-                double YP = double.Parse(txtYearlyPremium.Text, NumberStyles.Currency);
-                txtYearlyPremium.Text = YP.ToString();
-                return false;
+                txtYearlyPremium.Text = value.ToString();
             }
 
+            return false;
         }
     }
 }
